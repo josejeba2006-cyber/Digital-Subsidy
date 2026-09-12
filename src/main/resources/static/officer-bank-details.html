@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Bank Verification - Digital Subsidy</title>
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
+    <style>
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            position: relative;
+        }
+
+        .navbar nav {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .navbar nav a {
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .profile-menu {
+            margin-left: auto;
+            position: relative;
+        }
+
+        .profile-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .profile-dropdown {
+            display: none;
+        }
+
+        .profile-dropdown.show {
+            display: block;
+        }
+
+
+        /* ================= BANK TABLE ================= */
+
+        .bank-table-container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        .bank-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .bank-table th,
+        .bank-table td {
+            padding: 14px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .bank-table th {
+            background: #f8fafc;
+        }
+
+        .status-pending {
+            color: #92400e;
+            font-weight: bold;
+        }
+
+        .status-verified {
+            color: #166534;
+            font-weight: bold;
+        }
+
+        .status-rejected {
+            color: #991b1b;
+            font-weight: bold;
+        }
+
+        .verify-btn {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: #16a34a;
+            color: white;
+            margin-right: 5px;
+        }
+
+        .reject-btn {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: #dc2626;
+            color: white;
+        }
+        .navbar nav a.active {
+            color: #2563eb;
+
+            background: #eff6ff;
+
+            font-weight: 700;
+        }
+
+    </style>
+
+</head>
+
+
+<body class="dashboard-page">
+
+
+<header class="navbar">
+
+    <!-- ================= LOGO ================= -->
+
+    <div class="logo">
+        Digital<span>Subsidy</span>
+    </div>
+
+
+    <!-- ================= CENTER NAVIGATION ================= -->
+
+    <nav>
+
+        <a href="officer-bank-details.html"
+           class="active">
+            Bank Verification
+        </a>
+
+        <a href="admin-payments.html">
+            Payments
+        </a>
+
+    </nav>
+
+
+    <!-- ================= PROFILE ================= -->
+
+    <div class="profile-menu">
+
+        <button class="profile-button"
+                id="profileButton">
+
+            <span class="user-icon">
+                👤
+            </span>
+
+            <span id="staffEmail">
+                Loading...
+            </span>
+
+            <span class="dropdown-arrow">
+                ▼
+            </span>
+
+        </button>
+
+
+        <div class="profile-dropdown"
+             id="profileDropdown">
+
+            <div class="dropdown-user">
+
+                <div class="dropdown-avatar">
+                    👤
+                </div>
+
+                <div>
+
+                    <strong id="dropdownStaffEmail">
+                        Loading...
+                    </strong>
+
+                    <small id="staffRoleText">
+                        Loading...
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="dropdown-divider"></div>
+
+
+            <button id="logoutBtn">
+                🚪 Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="profile-container">
+
+    <div class="profile-header">
+
+        <p class="hero-tag">
+            OFFICER
+        </p>
+
+        <h1>
+            Bank Details Verification
+        </h1>
+
+        <p>
+            Verify submitted bank details before disbursement.
+        </p>
+
+    </div>
+
+
+    <div class="bank-table-container">
+
+        <table class="bank-table">
+
+            <thead>
+
+            <tr>
+
+                <th>Application ID</th>
+
+                <th>Account Holder</th>
+
+                <th>Bank</th>
+
+                <th>Account Number</th>
+
+                <th>IFSC</th>
+
+                <th>Status</th>
+
+                <th>Action</th>
+
+            </tr>
+
+            </thead>
+
+
+            <tbody id="bankDetailsBody">
+
+            <tr>
+
+                <td colspan="7">
+                    Loading bank details...
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</main>
+
+
+<!-- ================= BANK DETAILS JS ================= -->
+
+<script src="js/officer-bank-details.js"></script>
+
+
+<!-- ================= PROFILE JS ================= -->
+
+
+
+</body>
+
+</html>

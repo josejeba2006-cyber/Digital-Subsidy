@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> Analytics</title>
+
+    <link rel="stylesheet" href="css/analytics.css">
+</head>
+
+<body>
+<header class="navbar">
+
+    <div class="logo">
+        Digital<span>Subsidy</span>
+    </div>
+
+    <nav>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="schemes.html">
+            Schemes
+        </a>
+
+        <a href="eligible-schemes.html">
+            Eligible Schemes
+        </a>
+
+        <a href="my-applications.html">
+            My Applications
+        </a>
+
+        <a href="analytics.html" class="active">
+            Analytics
+        </a>
+
+    </nav>
+
+    <!-- Profile -->
+    <div class="profile-menu">
+
+        <button class="profile-button" id="profileButton">
+            👤
+            <span id="navUserEmail">Loading...</span>
+            <span class="dropdown-arrow">▼</span>
+        </button>
+
+        <div class="profile-dropdown" id="profileDropdown">
+
+            <div class="dropdown-user">
+
+                <div class="dropdown-avatar">
+                    👤
+                </div>
+
+                <div>
+                    <strong id="dropdownEmail">Loading...</strong>
+                    <small>Subsidy User</small>
+                </div>
+
+            </div>
+
+            <div class="dropdown-divider"></div>
+
+            <button id="myProfileBtn">
+                👤 My Profile
+            </button>
+
+            <button id="logoutBtn">
+                🚪 Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+
+<main class="analytics-page">
+
+    <!-- HEADER -->
+
+    <section class="page-header">
+
+        <div>
+            <div class="title-row">
+                <div class="title-icon">📊</div>
+
+                <div>
+                    <h1>Analytics</h1>
+
+                    <p>
+                        Insights into subsidy utilization,
+                        applications, disbursements and compliance.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-actions">
+
+            <button class="pdf-btn" id="downloadPdfBtn">
+                📄 Download PDF
+            </button>
+
+            <button class="excel-btn" id="downloadExcelBtn">
+                📊 Download Excel
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- FILTERS -->
+
+    <section class="filters">
+
+        <div class="filter-group">
+
+            <label>Select Scheme</label>
+
+            <select id="schemeFilter">
+                <option value="ALL">All Schemes</option>
+            </select>
+
+        </div>
+
+        <div class="last-updated">
+            🕒 Last updated:
+            <strong id="lastUpdated">--</strong>
+        </div>
+
+    </section>
+
+
+    <!-- KPI CARDS -->
+
+    <section class="kpi-grid">
+
+        <div class="kpi-card green">
+
+            <div class="kpi-icon">💰</div>
+
+            <div>
+                <span>Total Allocated Budget</span>
+                <strong id="totalBudget">₹0</strong>
+                <small>Overall allocation</small>
+            </div>
+
+        </div>
+
+
+        <div class="kpi-card purple">
+
+            <div class="kpi-icon">💳</div>
+
+            <div>
+                <span>Total Disbursed</span>
+                <strong id="totalDisbursed">₹0</strong>
+                <small id="disbursedPercentage">0% of budget</small>
+            </div>
+
+        </div>
+
+
+        <div class="kpi-card orange">
+
+            <div class="kpi-icon">◔</div>
+
+            <div>
+                <span>Remaining Budget</span>
+                <strong id="remainingBudget">₹0</strong>
+                <small id="remainingPercentage">0% remaining</small>
+            </div>
+
+        </div>
+
+
+        <div class="kpi-card blue">
+
+            <div class="kpi-icon">📄</div>
+
+            <div>
+                <span>Total Applications</span>
+                <strong id="totalApplications">0</strong>
+                <small>Applications received</small>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- VISUAL ANALYTICS -->
+
+    <section class="visual-grid">
+
+
+        <!-- BUDGET DONUT -->
+
+        <div class="analytics-card">
+
+            <div class="card-header">
+                <div>
+                    <h2>Budget Utilization</h2>
+                    <p>Disbursed vs remaining budget</p>
+                </div>
+            </div>
+
+            <div class="donut-area">
+
+                <div class="donut" id="budgetDonut">
+
+                    <div class="donut-center">
+                        <strong id="budgetPercent">0%</strong>
+                        <span>Utilized</span>
+                    </div>
+
+                </div>
+
+                <div class="legend">
+
+                    <div>
+                        <i class="dot blue-dot"></i>
+                        <span>Disbursed</span>
+                        <strong id="legendDisbursed">₹0</strong>
+                    </div>
+
+                    <div>
+                        <i class="dot gray-dot"></i>
+                        <span>Remaining</span>
+                        <strong id="legendRemaining">₹0</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- APPLICATION STATUS -->
+
+        <div class="analytics-card">
+
+            <div class="card-header">
+                <div>
+                    <h2>Application Status</h2>
+                    <p>Current application distribution</p>
+                </div>
+            </div>
+
+            <div class="status-chart">
+
+                <div class="status-donut" id="statusDonut">
+
+                    <div class="status-center">
+                        <strong id="statusTotal">0</strong>
+                        <span>Applications</span>
+                    </div>
+
+                </div>
+
+                <div class="status-legend">
+
+                    <div>
+                        <i class="dot green-dot"></i>
+                        <span>Approved</span>
+                        <strong id="approvedCount">0</strong>
+                    </div>
+
+                    <div>
+                        <i class="dot blue-dot"></i>
+                        <span>Pending</span>
+                        <strong id="pendingCount">0</strong>
+                    </div>
+
+                    <div>
+                        <i class="dot yellow-dot"></i>
+                        <span>Under Review</span>
+                        <strong id="reviewCount">0</strong>
+                    </div>
+
+                    <div>
+                        <i class="dot red-dot"></i>
+                        <span>Rejected</span>
+                        <strong id="rejectedCount">0</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DISBURSEMENT -->
+
+        <div class="analytics-card">
+
+            <div class="card-header">
+
+                <div>
+                    <h2>Disbursement Summary</h2>
+                    <p>Current payment statistics</p>
+                </div>
+
+            </div>
+
+            <div class="mini-stat-grid">
+
+                <div class="mini-stat">
+                    <span>Total Disbursements</span>
+                    <strong id="totalDisbursements">0</strong>
+                </div>
+
+                <div class="mini-stat">
+                    <span>Paid Installments</span>
+                    <strong id="paidInstallments">0</strong>
+                </div>
+
+                <div class="mini-stat">
+                    <span>Total Amount Paid</span>
+                    <strong id="paidAmount">₹0</strong>
+                </div>
+
+                <div class="mini-stat">
+                    <span>Pending Payments</span>
+                    <strong id="pendingPayments">0</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- STATE + SCHEME -->
+
+    <section class="two-column">
+
+
+        <!-- STATE -->
+
+        <div class="analytics-card">
+
+            <div class="card-header">
+
+                <div>
+                    <h2>State-wise Fund Utilization</h2>
+                    <p>Fund usage by region</p>
+                </div>
+
+            </div>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+                    <tr>
+                        <th>State</th>
+                        <th>Allocated</th>
+                        <th>Disbursed</th>
+                        <th>Remaining</th>
+                        <th>Utilization</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="stateAnalyticsBody"></tbody>
+
+                </table>
+                <button
+                        id="stateShowMoreBtn"
+                        class="show-more-btn">
+                    Show More
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- SCHEME -->
+
+        <div class="analytics-card">
+
+            <div class="card-header">
+
+                <div>
+                    <h2>Scheme-wise Utilization</h2>
+                    <p>Fund usage across schemes</p>
+                </div>
+
+            </div>
+
+            <div id="schemeAnalytics"></div>
+
+            <button id="schemeShowMoreBtn" class="show-more-btn">
+                Show More
+            </button>
+        </div>
+
+    </section>
+
+
+    <!-- COMPLIANCE + CATEGORY -->
+
+    <section class="two-column">
+
+
+        <!-- COMPLIANCE -->
+
+        <div class="analytics-card">
+
+            <div class="card-header">
+
+                <div>
+                    <h2>Compliance Summary</h2>
+                    <p>Utilization proof tracking</p>
+                </div>
+
+            </div>
+
+            <div class="compliance-grid">
+
+                <div class="compliance-box completed">
+                    <span>✓</span>
+                    <small>Verified</small>
+                    <strong id="verifiedMilestones">0</strong>
+                </div>
+
+                <div class="compliance-box pending">
+                    <span>◷</span>
+                    <small>Pending</small>
+                    <strong id="pendingMilestones">0</strong>
+                </div>
+
+                <div class="compliance-box overdue">
+                    <span>!</span>
+                    <small>Overdue</small>
+                    <strong id="overdueMilestones">0</strong>
+                </div>
+
+                <div class="compliance-box rejected">
+                    <span>×</span>
+                    <small>Rejected</small>
+                    <strong id="rejectedMilestones">0</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CATEGORY -->
+
+        <div class="analytics-card">
+
+            <div class="card-header">
+
+                <div>
+                    <h2>Beneficiary Category</h2>
+                    <p>Applications by category</p>
+                </div>
+
+            </div>
+
+            <div class="category-chart-container">
+                <canvas id="categoryChart"></canvas>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BUDGET EXHAUSTION -->
+
+    <section class="analytics-card budget-section">
+
+        <div class="card-header">
+
+            <div>
+                <h2>Budget Exhaustion</h2>
+                <p>Overall subsidy budget utilization</p>
+            </div>
+
+            <strong class="big-percent" id="budgetPercentage">
+                0%
+            </strong>
+
+        </div>
+
+        <div class="budget-bars">
+
+            <div class="budget-row">
+
+                <div>
+                    <span>Allocated Budget</span>
+                    <strong id="budgetAllocated">₹0</strong>
+                </div>
+
+                <div class="progress">
+                    <div class="progress-fill allocated" style="width:100%"></div>
+                </div>
+
+            </div>
+
+
+            <div class="budget-row">
+
+                <div>
+                    <span>Used Budget</span>
+                    <strong id="budgetUsed">₹0</strong>
+                </div>
+
+                <div class="progress">
+                    <div class="progress-fill used" id="usedBar"></div>
+                </div>
+
+            </div>
+
+
+            <div class="budget-row">
+
+                <div>
+                    <span>Remaining Budget</span>
+                    <strong id="budgetRemaining">₹0</strong>
+                </div>
+
+                <div class="progress">
+                    <div class="progress-fill remaining" id="remainingBar"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="js/analytics.js"></script>
+
+</body>
+</html>

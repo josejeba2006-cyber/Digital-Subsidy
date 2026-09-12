@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Staff Login - Digital Subsidy</title>
+
+  <link rel="stylesheet"
+        href="css/style.css">
+  <style>
+    .password-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .password-wrapper input {
+      width: 100%;
+      box-sizing: border-box;
+      padding-right: 50px;
+    }
+
+    .password-wrapper .password-toggle {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+
+      width: auto;
+      height: auto;
+
+      margin: 0;
+      padding: 4px;
+
+      border: none;
+      outline: none;
+      background: transparent;
+
+      font-size: 18px;
+      line-height: 1;
+
+      cursor: pointer;
+      color: #000;
+    }
+
+    .password-wrapper .password-toggle:hover {
+      background: transparent;
+    }
+  </style>
+
+</head>
+
+<body class="auth-page">
+
+<header class="navbar">
+
+  <div class="logo">
+    Digital<span>Subsidy</span>
+  </div>
+
+  <nav>
+
+    <a href="index.html">
+      Home
+    </a>
+
+    <a href="Login.html">
+      User Login
+    </a>
+
+  </nav>
+
+</header>
+
+
+<main class="auth-container">
+
+  <div class="auth-card">
+
+    <div class="auth-header">
+
+      <p class="hero-tag">
+        STAFF PORTAL
+      </p>
+
+      <h1>
+        Staff Login
+      </h1>
+
+      <p>
+        Login as Admin or Officer.
+      </p>
+
+    </div>
+
+
+    <form id="staffLoginForm">
+
+      <div class="form-group">
+
+        <label>Email</label>
+
+        <input
+                type="email"
+                id="staffEmail"
+                placeholder="Enter staff email"
+                required>
+
+      </div>
+      <div class="form-group">
+
+        <label>Password</label>
+
+        <div class="password-wrapper">
+
+          <input
+                  type="password"
+                  id="staffPassword"
+                  placeholder="Enter password"
+                  required>
+
+          <button
+                  type="button"
+                  id="toggleStaffPassword"
+                  class="password-toggle">
+            👁
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div id="staffMessage"
+           class="message">
+      </div>
+
+
+      <button
+              type="submit"
+              class="auth-submit">
+
+        Login
+
+      </button>
+
+    </form>
+
+
+    <p style="text-align:center; margin-top:20px;">
+
+      <a href="Login.html">
+        Login as User
+      </a>
+
+    </p>
+
+  </div>
+
+</main>
+
+
+<footer>
+
+  <div class="footer-logo">
+    Digital<span>Subsidy</span>
+  </div>
+
+  <small>
+    © 2026 Digital Subsidy Platform
+  </small>
+
+</footer>
+
+<script src="js/staff-login.js"></script>
+
+</body>
+</html>

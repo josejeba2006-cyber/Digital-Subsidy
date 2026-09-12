@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Schemes - Digital Subsidy</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <style>
+        .grant-section {
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .grant-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .slab-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .slab-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding: 13px 15px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+
+        .slab-item small {
+            display: block;
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 4px;
+        }
+
+        .slab-item strong {
+            display: block;
+            font-size: 15px;
+            color: #0f172a;
+        }
+
+        .slab-empty {
+            padding: 12px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            color: #64748b;
+            font-size: 14px;
+        }
+        .scheme-grant {
+            margin-top: 25px;
+            padding: 18px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .scheme-grant small {
+            display: block;
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .scheme-grant strong {
+            display: block;
+            font-size: 22px;
+            color: #0f172a;
+        }
+
+        .scheme-eligible {
+            margin-top: 20px;
+            margin-bottom: 22px;
+            color: #475569;
+            font-size: 15px;
+        }
+
+        .scheme-eligible strong {
+            color: #0f172a;
+        }
+        .navbar nav a.active {
+            color: #2563eb;
+
+            background: #eff6ff;
+
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        Digital<span>Subsidy</span>
+    </div>
+
+    <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="schemes.html" class="active">Schemes</a>
+        <a href="eligible-schemes.html">Eligible Schemes</a>
+        <a href="my-applications.html">My Applications</a>
+        <a href="analytics.html">Analytics</a>
+    </nav>
+
+    <div class="profile-menu">
+
+        <button class="profile-button" id="profileButton">
+            <span class="user-icon">👤</span>
+            <span id="navUserEmail">User</span>
+            <span class="dropdown-arrow">▼</span>
+        </button>
+
+        <div class="profile-dropdown" id="profileDropdown">
+
+            <div class="dropdown-user">
+                <div class="dropdown-avatar">👤</div>
+
+                <div>
+                    <strong id="dropdownEmail">User</strong>
+                    <small>Subsidy User</small>
+                </div>
+            </div>
+
+            <div class="dropdown-divider"></div>
+
+            <a href="profile.html">👤 My Profile</a>
+
+            <button id="logoutBtn">🚪 Logout</button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="schemes-page">
+
+    <div class="schemes-page-header">
+
+        <p class="hero-tag">SUBSIDY PROGRAMS</p>
+
+        <h1>Available Schemes</h1>
+
+        <p>
+            Explore government subsidy schemes and find
+            the ones you may be eligible for.
+        </p>
+
+    </div>
+
+
+    <div id="schemeContainer" class="scheme-container">
+
+        <p>Loading schemes...</p>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <div class="footer-logo">
+        Digital<span>Subsidy</span>
+    </div>
+
+    <p>
+        Simple, transparent and accessible subsidy applications.
+    </p>
+
+    <div class="footer-line"></div>
+
+    <small>
+        © 2026 Digital Subsidy Platform. All rights reserved.
+    </small>
+
+</footer>
+
+
+<script src="js/schemes.js"></script>
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>

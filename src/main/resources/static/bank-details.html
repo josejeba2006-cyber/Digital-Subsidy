@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Bank Details - Digital Subsidy</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ================= BANK DETAILS ================= */
+
+        .bank-details-card {
+            max-width: 600px;
+            margin: 30px auto;
+        }
+
+        .bank-details-card .form-group {
+            margin-bottom: 18px;
+        }
+
+        .bank-details-card label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .bank-details-card input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .bank-details-card input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .bank-details-card .auth-submit {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .bank-details-card select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            box-sizing: border-box;
+            background: white;
+        }
+
+        .bank-details-card select:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+    </style>
+
+</head>
+
+
+<body class="dashboard-page">
+
+<header class="navbar">
+
+    <div class="logo">
+        Digital<span>Subsidy</span>
+    </div>
+
+    <nav>
+
+
+
+        <a href="my-applications.html">
+            My Applications
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="profile-container">
+
+    <div class="profile-header">
+
+        <p class="hero-tag">
+            PAYMENT DETAILS
+        </p>
+
+        <h1>
+            Submit Bank Details
+        </h1>
+
+        <p>
+            Your bank details will be verified before payment.
+        </p>
+
+    </div>
+
+
+    <form id="bankDetailsForm"
+          class="auth-card bank-details-card">
+
+
+        <div class="form-group">
+
+            <label>
+                Account Holder Name
+            </label>
+
+            <input
+                    type="text"
+                    id="accountHolderName"
+                    placeholder="Example: Dinesh John"
+                    required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Bank Name</label>
+
+            <select id="bankName" required>
+
+                <option value="">
+                    Select your bank
+                </option>
+
+                <option value="State Bank of India">
+                    State Bank of India (SBI)
+                </option>
+
+                <option value="HDFC Bank">
+                    HDFC Bank
+                </option>
+
+                <option value="ICICI Bank">
+                    ICICI Bank
+                </option>
+
+                <option value="Axis Bank">
+                    Axis Bank
+                </option>
+
+                <option value="Indian Bank">
+                    Indian Bank
+                </option>
+
+                <option value="Canara Bank">
+                    Canara Bank
+                </option>
+
+                <option value="Punjab National Bank">
+                    Punjab National Bank (PNB)
+                </option>
+
+                <option value="Bank of Baroda">
+                    Bank of Baroda
+                </option>
+
+                <option value="Union Bank of India">
+                    Union Bank of India
+                </option>
+
+                <option value="Kotak Mahindra Bank">
+                    Kotak Mahindra Bank
+                </option>
+
+            </select>
+
+        </div>
+        <div class="form-group">
+
+            <label>
+                Enter Account Number(12 Characters)
+            </label>
+            <input
+                    type="text"
+                    id="accountNumber"
+                    placeholder="Example: 123456789012"
+                    required
+            >
+
+
+
+        </div>
+        <div class="form-group">
+
+            <label>Confirm Account Number</label>
+
+            <input
+                    type="text"
+                    id="confirmAccountNumber"
+                    placeholder="Re-enter your account number"
+                    required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Enter IFSC Code(11 Characters)
+            </label>
+
+            <input
+                    type="text"
+                    id="ifscCode"
+                    placeholder="Example: SBIN0001234"
+                    required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Branch Name
+            </label>
+
+            <input
+                    type="text"
+                    id="branchName"
+                    placeholder="Example: Anna Nagar"
+                    required
+            >
+
+        </div>
+
+
+        <div id="bankMessage"
+             class="message">
+        </div>
+
+
+        <button
+                type="submit"
+                class="auth-submit">
+
+            Submit Bank Details
+
+        </button>
+
+
+    </form>
+
+</main>
+
+
+<script src="js/bank-details.js"></script>
+
+</body>
+
+</html>

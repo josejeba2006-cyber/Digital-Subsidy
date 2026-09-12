@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register - Digital Subsidy</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="auth-page">
+
+<header class="navbar">
+
+    <div class="logo">
+        Digital<span>Subsidy</span>
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="index.html#schemes">Schemes</a>
+        <a href="index.html#how-it-works">How It Works</a>
+    </nav>
+
+    <div class="nav-buttons">
+        <a href="login.html" class="btn register-btn">
+            Login
+        </a>
+    </div>
+
+</header>
+
+
+<main class="auth-container">
+
+    <div class="auth-card">
+
+        <div class="auth-header">
+
+            <div class="auth-icon">
+                👤
+            </div>
+
+            <p class="auth-tag">GET STARTED</p>
+
+            <h1>Create your account</h1>
+
+            <p>
+                Register to apply for government subsidy schemes.
+            </p>
+
+        </div>
+
+
+        <form id="registerForm">
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <div class="password-box">
+
+                    <input
+                            type="password"
+                            id="password"
+                            placeholder="Create a password"
+                            required
+                    >
+
+                    <button
+                            type="button"
+                            id="togglePassword">
+                        👁
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="confirmPassword">
+                    Confirm Password
+                </label>
+
+                <div class="password-box">
+
+                    <input
+                            type="password"
+                            id="confirmPassword"
+                            placeholder="Confirm your password"
+                            required
+                    >
+
+                    <button
+                            type="button"
+                            id="toggleConfirmPassword">
+                        👁
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div id="registerMessage" class="message"></div>
+
+
+            <button type="submit" class="auth-submit">
+                Create Account
+            </button>
+
+        </form>
+
+
+        <div class="auth-footer">
+
+            <p>
+                Already have an account?
+                <a href="login.html">Login</a>
+            </p>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer class="auth-footer-bottom">
+
+    <div class="footer-logo">
+        Digital<span>Subsidy</span>
+    </div>
+
+    <p>
+        Simple, transparent and accessible subsidy applications.
+    </p>
+
+</footer>
+
+
+<script src="js/register.js"></script>
+
+</body>
+</html>

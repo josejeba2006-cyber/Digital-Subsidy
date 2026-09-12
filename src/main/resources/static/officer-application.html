@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Review Application - Digital Subsidy</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* =====================================================
+   OFFICER DOCUMENT CARDS
+   ===================================================== */
+
+        .document-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+
+            padding: 20px 22px;
+            margin-bottom: 14px;
+
+            background: #ffffff;
+            border: 1px solid #d9e1ea;
+            border-radius: 8px;
+
+            transition: box-shadow 0.2s ease,
+            border-color 0.2s ease;
+        }
+
+        .document-card:hover {
+            border-color: #b8c7d9;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+
+        /* DOCUMENT NAME */
+
+        .document-card .document-name {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+
+            min-width: 0;
+        }
+
+
+        /* DOCUMENT ICON */
+
+        .document-card .document-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #eef4fa;
+            border-radius: 6px;
+
+            font-size: 19px;
+            flex-shrink: 0;
+        }
+
+
+        /* DOCUMENT TYPE */
+
+        .document-card .document-name strong {
+            display: block;
+
+            color: #172b4d;
+            font-size: 15px;
+            font-weight: 700;
+
+            margin-bottom: 5px;
+        }
+
+
+        /* FILE NAME */
+
+        .document-card .document-name small {
+            display: block;
+
+            color: #64748b;
+            font-size: 13px;
+
+            margin-bottom: 8px;
+        }
+
+
+        /* DOCUMENT ACTIONS */
+
+        .document-card .document-actions {
+            display: flex;
+            align-items: center;
+
+            flex-shrink: 0;
+        }
+
+
+        /* VIEW PDF BUTTON */
+
+        .document-card .view-pdf-btn {
+            border: 1px solid #1d5fa7;
+            background: #ffffff;
+            color: #1d5fa7;
+
+            padding: 9px 16px;
+
+            border-radius: 5px;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .document-card .view-pdf-btn:hover {
+            background: #eef5fc;
+        }
+
+
+        /* =====================================================
+           VERIFICATION STATUS
+           ===================================================== */
+
+        .document-card .verification-status {
+            display: inline-block;
+
+            padding: 5px 11px;
+
+            border-radius: 15px;
+
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+
+        /* PENDING */
+
+        .document-card .verification-status.pending {
+            background: #fff4cc;
+            color: #8a5a00;
+        }
+
+
+        /* VERIFIED */
+
+        .document-card .verification-status.verified {
+            background: #e8f7ee;
+            color: #146c43;
+        }
+
+
+        /* REJECTED */
+
+        .document-card .verification-status.rejected {
+            background: #fdecec;
+            color: #b42318;
+        }
+
+
+        /* =====================================================
+           MOBILE
+           ===================================================== */
+
+        @media (max-width: 700px) {
+
+            .document-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .document-card .document-actions {
+                width: 100%;
+            }
+
+            .document-card .view-pdf-btn {
+                width: 100%;
+            }
+
+        }
+
+        /* =====================================================
+           OFFICER APPLICATION REVIEW PAGE
+           ===================================================== */
+
+        .review-page {
+            background: #f5f7fa;
+            min-height: 100vh;
+        }
+
+
+        /* ================= HEADER ================= */
+
+        .review-header {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 45px 25px 25px;
+        }
+
+        .review-header .hero-tag {
+            margin-bottom: 8px;
+        }
+
+        .review-header h1 {
+            margin: 0 0 8px;
+            color: #0f2f55;
+        }
+
+        .review-header p {
+            margin: 0;
+            color: #526579;
+            font-size: 17px;
+        }
+
+
+        /* ================= MAIN CONTAINER ================= */
+
+        .review-container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 25px 50px;
+        }
+
+
+        /* ================= COMMON CARD ================= */
+
+        .review-section {
+            background: #ffffff;
+            border: 1px solid #d9e1ea;
+            border-radius: 8px;
+            margin-bottom: 22px;
+            overflow: hidden;
+        }
+
+
+        .review-section-header {
+            background: #f8fafc;
+            border-bottom: 1px solid #d9e1ea;
+            padding: 18px 22px;
+        }
+
+        .review-section-header h2 {
+            margin: 0;
+            color: #12395f;
+            font-size: 21px;
+        }
+
+        .review-section-header p {
+            margin: 5px 0 0;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+
+        .review-section-body {
+            padding: 22px;
+        }
+
+
+        /* =====================================================
+           APPLICATION SUMMARY
+           ===================================================== */
+
+        .application-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+
+        .summary-item {
+            padding: 15px 17px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+        }
+
+
+        .summary-item small {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+
+        .summary-item strong {
+            color: #172b4d;
+            font-size: 16px;
+        }
+
+
+        /* =====================================================
+           SCHEME DETAILS
+           ===================================================== */
+
+        .scheme-title {
+            margin: 0 0 8px;
+            color: #12395f;
+            font-size: 23px;
+        }
+
+
+        .scheme-description {
+            color: #526579;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+
+        .scheme-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+
+        .scheme-info-item {
+            border: 1px solid #d9e1ea;
+            border-radius: 6px;
+            padding: 16px;
+        }
+
+
+        .scheme-info-item small {
+            display: block;
+            color: #64748b;
+            margin-bottom: 7px;
+        }
+
+
+        .scheme-info-item strong {
+            color: #172b4d;
+            font-size: 16px;
+        }
+
+
+        /* =====================================================
+           GRANT DETAILS
+           ===================================================== */
+
+        .grant-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+
+        .grant-table th {
+            background: #eef4fa;
+            color: #12395f;
+            text-align: left;
+            padding: 13px 15px;
+            border-bottom: 1px solid #d9e1ea;
+            font-size: 14px;
+        }
+
+
+        .grant-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e5eaf0;
+            color: #172b4d;
+        }
+
+
+        .grant-table tr:last-child td {
+            border-bottom: none;
+        }
+
+
+        /* Applicable grant */
+
+        .applicable-grant {
+            margin-top: 18px;
+            padding: 18px 20px;
+            border: 1px solid #b7d9c2;
+            border-left: 5px solid #198754;
+            background: #f0f9f3;
+            border-radius: 6px;
+        }
+
+
+        .applicable-grant-label {
+            display: block;
+            color: #146c43;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+
+        .applicable-grant-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+
+        .applicable-grant-range {
+            color: #1f2937;
+            font-weight: 600;
+        }
+
+
+        .applicable-grant-amount {
+            color: #146c43;
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+
+        /* =====================================================
+           DOCUMENTS
+           ===================================================== */
+
+        .document-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+
+        .document-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 16px 18px;
+            border: 1px solid #d9e1ea;
+            border-radius: 7px;
+            background: #ffffff;
+        }
+
+
+        .document-info {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+
+        .document-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 6px;
+            background: #eef4fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+
+        .document-name {
+            color: #172b4d;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+
+        .document-file-name {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+
+        .document-status {
+            padding: 5px 11px;
+            border-radius: 15px;
+            background: #fff4cc;
+            color: #8a5a00;
+            font-size: 12px;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+
+
+        .view-document-btn {
+            border: 1px solid #1d5fa7;
+            background: #ffffff;
+            color: #1d5fa7;
+            padding: 9px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+
+        .view-document-btn:hover {
+            background: #eef5fc;
+        }
+
+
+        /* =====================================================
+           DECISION
+           ===================================================== */
+
+        .decision-box {
+            padding: 22px;
+        }
+
+
+        .decision-box p {
+            color: #526579;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+
+        .decision-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+
+        .approve-btn,
+        .reject-btn {
+            border: none;
+            border-radius: 5px;
+            padding: 11px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+
+        .approve-btn {
+            background: #198754;
+            color: white;
+        }
+
+
+        .approve-btn:hover {
+            background: #157347;
+        }
+
+
+        .reject-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+
+        .reject-btn:hover {
+            background: #bb2d3b;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+           ===================================================== */
+
+        @media (max-width: 800px) {
+
+            .application-summary {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .scheme-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .document-item {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .applicable-grant-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .application-summary {
+                grid-template-columns: 1fr;
+            }
+
+            .review-header {
+                padding-top: 30px;
+            }
+
+            .review-container {
+                padding: 0 15px 35px;
+            }
+
+            .decision-actions {
+                flex-direction: column;
+            }
+
+            .approve-btn,
+            .reject-btn {
+                width: 100%;
+            }
+
+            .grant-table {
+                font-size: 13px;
+            }
+
+        }
+        .review-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+
+        .application-status {
+            flex-shrink: 0;
+        }
+
+
+        .application-status span {
+            display: inline-block;
+            padding: 10px 18px;
+            border-radius: 25px;
+            background: #fef3c7;
+            color: #92400e;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+
+        .review-section-header h2 {
+            margin: 8px 0 0;
+        }
+
+
+        @media (max-width: 700px) {
+
+            .review-section-header {
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="review-page">
+
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+
+<header class="navbar">
+
+    <div class="logo">
+        Digital<span>Subsidy</span>
+    </div>
+
+
+    <nav>
+
+        <a href="officer-dashboard.html">
+            Applications
+        </a>
+
+        <a href="officer-bank-details.html"
+           class="bank-link">
+            🏦 Bank Verification
+        </a>
+
+    </nav>
+
+
+    <div class="profile-menu">
+
+        <button class="profile-button"
+                id="profileButton">
+
+            <span class="user-icon">
+                👤
+            </span>
+
+            <span id="staffEmail">
+                Officer
+            </span>
+
+            <span class="dropdown-arrow">
+                ▼
+            </span>
+
+        </button>
+
+
+        <div class="profile-dropdown"
+             id="profileDropdown">
+
+            <div class="dropdown-user">
+
+                <div class="dropdown-avatar">
+                    👤
+                </div>
+
+                <div>
+
+                    <strong id="dropdownStaffEmail">
+                        Officer
+                    </strong>
+
+                    <small>
+                        Subsidy Officer
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="dropdown-divider"></div>
+
+
+            <button id="logoutBtn">
+                🚪 Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     PAGE HEADER
+     ===================================================== -->
+
+<header class="review-header">
+
+    <p class="hero-tag">
+        APPLICATION REVIEW
+    </p>
+
+    <h1>
+        Review Application
+    </h1>
+
+    <p>
+        Review applicant information, scheme eligibility,
+        grant details and submitted documents.
+    </p>
+
+</header>
+
+
+<main class="review-container">
+
+
+    <!-- =================================================
+         1. APPLICATION / APPLICANT DETAILS
+         ================================================= -->
+    <section class="review-section">
+
+        <div class="review-section-header">
+
+            <div>
+
+                <p class="hero-tag">
+                    APPLICATION #32
+                </p>
+
+                <h2>
+                    Startup Subsidy Scheme
+                </h2>
+
+            </div>
+
+
+            <div class="application-status">
+
+            <span id="applicationStatus">
+                SUBMITTED
+            </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="review-section-body">
+
+            <div class="application-summary">
+
+                <div class="summary-item">
+
+                    <small>
+                        Application ID
+                    </small>
+
+                    <strong id="applicationId">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <small>
+                        Applicant Name
+                    </small>
+
+                    <strong id="applicantName">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <small>
+                        Email
+                    </small>
+
+                    <strong id="applicantEmail">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <small>
+                        DOB
+                    </small>
+
+                    <strong id="applicantAge">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <small>
+                        Occupation
+                    </small>
+
+                    <strong id="applicantOccupation">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <small>
+                        Application Date
+                    </small>
+
+                    <strong id="applicationDate">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =================================================
+         2. SCHEME DETAILS
+         ================================================= -->
+
+    <section class="review-section">
+
+        <div class="review-section-header">
+
+            <h2>
+                Scheme Details
+            </h2>
+
+            <p>
+                Scheme selected by the applicant.
+            </p>
+
+        </div>
+
+
+        <div class="review-section-body">
+
+
+            <h3 class="scheme-title"
+                id="schemeName">
+
+                -
+
+            </h3>
+
+
+            <p class="scheme-description"
+               id="schemeDescription">
+
+                -
+
+            </p>
+
+
+            <div class="scheme-info-grid">
+
+
+                <div class="scheme-info-item">
+
+                    <small>
+                        Eligible Occupation
+                    </small>
+
+                    <strong id="schemeOccupation">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="scheme-info-item">
+
+                    <small>
+                        Age Limit
+                    </small>
+
+                    <strong id="schemeAgeLimit">
+                        -
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         3. GRANT DETAILS
+         ================================================= -->
+
+    <section class="review-section">
+
+        <div class="review-section-header">
+
+            <h2>
+                Grant Details
+            </h2>
+
+            <p>
+                Grant slabs available under the selected scheme.
+            </p>
+
+        </div>
+
+
+        <div class="review-section-body">
+
+
+            <table class="grant-table">
+
+                <thead>
+
+                <tr>
+
+                    <th>
+                        Income Range
+                    </th>
+
+                    <th>
+                        Grant Amount
+                    </th>
+
+                </tr>
+
+                </thead>
+
+
+                <tbody id="grantDetailsTable">
+
+                <tr>
+
+                    <td colspan="2">
+                        Loading grant details...
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+
+            <!-- APPLICABLE GRANT -->
+
+            <div class="applicable-grant">
+
+                <span class="applicable-grant-label">
+                    Applicable Grant
+                </span>
+
+
+                <div class="applicable-grant-content">
+
+                    <span class="applicable-grant-range"
+                          id="applicableIncomeRange">
+
+                        -
+
+                    </span>
+
+
+                    <span class="applicable-grant-amount"
+                          id="applicableGrantAmount">
+
+                        -
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         4. UPLOADED DOCUMENTS
+         ================================================= -->
+
+    <section class="review-section">
+
+        <div class="review-section-header">
+
+            <h2>
+                Uploaded Documents
+            </h2>
+
+            <p>
+                Review the documents submitted by the applicant.
+            </p>
+
+        </div>
+
+
+        <div class="review-section-body">
+
+            <div id="documentsContainer"
+                 class="document-list">
+
+                <p>
+                    Loading documents...
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         5. APPLICATION DECISION
+         ================================================= -->
+
+    <section class="review-section">
+
+        <div class="review-section-header">
+
+            <h2>
+                Application Decision
+            </h2>
+
+            <p>
+                Review all required information and documents
+                before making a decision.
+            </p>
+
+        </div>
+
+
+        <div class="decision-box">
+
+            <div class="decision-actions">
+
+                <button
+                        type="button"
+                        id="approveApplicationBtn"
+                        class="approve-btn">
+                    ✓ Approve Application
+                </button>
+
+                <button
+                        type="button"
+                        id="rejectApplicationBtn"
+                        class="reject-btn">
+                    ✕ Reject Application
+                </button>
+
+            </div>
+            <div id="rejectionSection" style="display: none;">
+
+                <h3>Rejection Reason</h3>
+
+                <select id="rejectionReason">
+
+                    <option value="">
+                        Select rejection reason
+                    </option>
+
+                    <option value="Required documents are missing">
+                        Required documents are missing
+                    </option>
+
+                    <option value="Documents could not be verified">
+                        Documents could not be verified
+                    </option>
+
+                    <option value="Applicant is not eligible">
+                        Applicant is not eligible
+                    </option>
+
+                    <option value="Income criteria not satisfied">
+                        Income criteria not satisfied
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+                <div id="otherReasonSection" style="display: none;">
+
+        <textarea
+                id="otherReason"
+                placeholder="Enter rejection reason">
+        </textarea>
+
+                </div>
+
+                <div class="rejection-actions">
+
+                    <button
+                            type="button"
+                            id="confirmRejectBtn">
+                        Confirm Rejection
+                    </button>
+
+                    <button
+                            type="button"
+                            id="cancelRejectBtn">
+                        Cancel
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<footer>
+
+    <div class="footer-logo">
+        Digital<span>Subsidy</span>
+    </div>
+
+    <p>
+        Simple, transparent and accessible subsidy applications.
+    </p>
+
+    <div class="footer-line"></div>
+
+    <small>
+        © 2026 Digital Subsidy Platform.
+        All rights reserved.
+    </small>
+
+</footer>
+
+
+<script src="js/officer-application.js"></script>
+
+</body>
+
+</html>

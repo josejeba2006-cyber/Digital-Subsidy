@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Payments - Digital Subsidy</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        .payment-page {
+            background: #f8fafc;
+        }
+
+        .payment-header {
+            margin-bottom: 35px;
+        }
+
+        .payment-header p {
+            color: #64748b;
+        }
+
+        .payment-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .payment-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .payment-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .payment-card h3 {
+            margin: 8px 0;
+        }
+
+        .payment-status {
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .payment-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .payment-detail {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .payment-detail small {
+            display: block;
+            color: #64748b;
+            margin-bottom: 7px;
+        }
+
+        .payment-detail strong {
+            color: #1e293b;
+        }
+
+        .payment-action {
+            margin-top: 20px;
+        }
+
+        .process-payment-btn {
+            background: #16a34a;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .process-payment-btn:hover {
+            background: #15803d;
+        }
+
+        .total-grant {
+            margin-top: 15px;
+        }
+
+
+        /* ADMIN INSTALLMENT PLAN */
+
+        .admin-installments {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .admin-installments h4 {
+            margin: 0 0 18px;
+            font-size: 20px;
+            color: #0f172a;
+        }
+
+        .admin-installment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .admin-installment-card {
+            display: grid;
+            grid-template-columns: 1.2fr 0.7fr 2fr 0.8fr;
+            align-items: center;
+            gap: 25px;
+            padding: 28px 32px;
+            margin-bottom: 18px;
+            border: 1px solid #d9e2ec;
+            border-radius: 16px;
+            background: #f8fafc;
+            box-sizing: border-box;
+        }
+
+        .admin-installment-left {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            min-width: 0;
+        }
+
+        .admin-installment-number {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #2563eb;
+        }
+
+        .admin-installment-left h4 {
+            margin: 0;
+            font-size: 17px;
+            color: #0f172a;
+        }
+
+        .admin-installment-percentage {
+            margin: 0;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .admin-installment-amount {
+            min-width: 0;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .admin-installment-amount strong {
+            font-size: 24px;
+            color: #0f172a;
+        }
+
+        .admin-installment-action {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+        }
+
+        .utilization-proof-admin {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            min-width: 0;
+            overflow-wrap: break-word;
+        }
+
+        .utilization-proof-admin span {
+            color: #475569;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .utilization-proof-admin strong {
+            display: inline-block;
+            line-height: 1.4;
+        }
+
+        .view-utilization-btn {
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .view-utilization-btn:hover {
+            text-decoration: underline;
+        }
+
+        .utilization-proof-admin.missing {
+            color: #92400e;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .installment-admin-status {
+            white-space: normal;
+            line-height: 1.4;
+        }
+
+        .process-installment-btn {
+            width: 100%;
+            max-width: 160px;
+            min-height: 70px;
+            border: none;
+            border-radius: 10px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .process-installment-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .proof-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+
+        /* RESPONSIVE */
+
+        @media (max-width: 700px) {
+            .payment-details {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .installment-admin-status {
+                min-width: auto;
+            }
+        }
+        .admin-installment-card {
+            display: grid;
+            grid-template-columns: 1.2fr 0.7fr 1.5fr 1fr;
+            align-items: center;
+            gap: 25px;
+            padding: 28px 32px;
+            margin-bottom: 18px;
+            border: 1px solid #d9e2ec;
+            border-radius: 16px;
+            background: #f8fafc;
+            box-sizing: border-box;
+        }
+        .admin-installment-proof {
+            min-width: 0;
+        }
+
+        .admin-installment-action {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            min-width: 0;
+            text-align: center;
+        }
+
+        .utilization-proof-admin {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .proof-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .process-installment-btn {
+            width: 100%;
+            max-width: 160px;
+            min-height: 70px;
+            border: none;
+            border-radius: 10px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .process-installment-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .navbar nav a.active {
+            color: #2563eb;
+
+            background: #eff6ff;
+
+            font-weight: 700;
+        }
+
+    </style>
+
+</head>
+
+
+<body class="dashboard-page">
+
+<header class="navbar">
+
+    <div class="logo">
+        Digital<span>Subsidy</span>
+    </div>
+
+    <nav>
+        <a href="admin-dashboard.html">Dashboard</a>
+        <a href="admin-schemes.html">Schemes</a>
+        <a href="admin-users.html">Users</a>
+        <a href="admin-applications.html">Applications</a>
+        <a href="officer-bank-details.html"> Bank Details</a>
+        <a href="admin-payments.html" class="active"> Payments</a>
+        <a href="admin-regional-allocation.html">Regional Allocation</a>
+    </nav>
+
+    <div class="profile-menu">
+
+        <button class="profile-button"
+                id="profileButton">
+
+            <span class="user-icon">👤</span>
+
+            <span id="staffEmail">
+                Admin
+            </span>
+
+            <span class="dropdown-arrow">
+                ▼
+            </span>
+
+        </button>
+
+
+        <div class="profile-dropdown"
+             id="profileDropdown">
+
+            <div class="dropdown-user">
+
+                <div class="dropdown-avatar">
+                    👤
+                </div>
+
+                <div>
+
+                    <strong id="dropdownStaffEmail">
+                        Admin
+                    </strong>
+
+                    <small>
+                        Administrator
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="dropdown-divider"></div>
+
+
+            <button id="logoutBtn">
+                🚪 Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="profile-container payment-page">
+
+    <div class="profile-header payment-header">
+
+        <p class="hero-tag">
+            ADMIN PORTAL
+        </p>
+
+        <h1>
+            Payment Processing
+        </h1>
+
+        <p>
+            Process subsidy payments for applications with verified bank details.
+        </p>
+
+    </div>
+
+
+    <div id="paymentsContainer"
+         class="payment-container">
+
+        <div class="empty-state">
+
+            <div>💳</div>
+
+            <h3>
+                Loading payments...
+            </h3>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <div class="footer-logo">
+        Digital<span>Subsidy</span>
+    </div>
+
+    <p>
+        Simple, transparent and accessible subsidy applications.
+    </p>
+
+    <div class="footer-line"></div>
+
+    <small>
+        © 2026 Digital Subsidy Platform.
+        All rights reserved.
+    </small>
+
+</footer>
+
+
+<script src="js/admin-payments.js"></script>
+
+
+</body>
+
+</html>

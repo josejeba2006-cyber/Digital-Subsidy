@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Apply - Digital Subsidy</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+
+    <style>
+        /* ================= GRANT DETAILS ================= */
+
+        /* =========================================
+   APPLY PAGE LAYOUT
+========================================= */
+
+        .apply-container {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 50px 30px 70px;
+        }
+
+
+        .apply-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+
+        .apply-header h1 {
+            margin: 8px 0 10px;
+        }
+
+
+        .apply-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 30px;
+            align-items: start;
+        }
+
+
+        /* =========================================
+           LEFT - SCHEME DETAILS
+        ========================================= */
+
+        .scheme-summary {
+            background: #ffffff;
+            border: 1px solid #d8e0ea;
+            border-radius: 12px;
+            padding: 38px;
+            box-sizing: border-box;
+        }
+
+
+        .scheme-summary h2 {
+            margin: 8px 0 12px;
+        }
+
+
+        #schemeDescription {
+            color: #48627f;
+            line-height: 1.7;
+        }
+
+
+        /* =========================================
+           BENEFITS
+        ========================================= */
+
+        .scheme-benefits {
+            margin-top: 28px;
+            padding: 25px;
+            background: #f1f6fc;
+            border-left: 5px solid #1761ad;
+            border-radius: 6px;
+        }
+
+
+        .scheme-benefits h3 {
+            margin: 0 0 12px;
+        }
+
+
+        .scheme-benefits p {
+            margin: 0;
+            line-height: 1.8;
+            color: #3f5d7c;
+        }
+
+
+        /* =========================================
+           GRANT DETAILS
+        ========================================= */
+
+        .grant-section {
+            margin-top: 32px;
+            padding-top: 28px;
+            border-top: 1px solid #dce3eb;
+        }
+
+
+        .grant-section h3 {
+            margin: 0 0 18px;
+        }
+
+
+        #grantSlabs {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+
+        .grant-slab-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+
+            padding: 18px 20px;
+
+            background: #f8fafc;
+
+            border: 1px solid #dbe3ec;
+            border-radius: 8px;
+
+            box-sizing: border-box;
+        }
+
+
+        .slab-item {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+
+        .slab-item small {
+            color: #607895;
+            font-size: 13px;
+        }
+
+
+        .slab-item strong {
+            color: #102d4f;
+            font-size: 17px;
+        }
+
+
+        /* =========================================
+           ELIGIBILITY
+        ========================================= */
+
+        .eligibility-section {
+            margin-top: 32px;
+            padding-top: 28px;
+            border-top: 1px solid #dce3eb;
+        }
+
+
+        .eligibility-section h3 {
+            margin: 0 0 18px;
+        }
+
+
+        .eligibility-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+
+        .eligibility-item {
+            padding: 20px;
+            border: 1px solid #dce3eb;
+            background: #ffffff;
+        }
+
+
+        .eligibility-item small {
+            display: block;
+            color: #607895;
+            margin-bottom: 8px;
+        }
+
+
+        .eligibility-item strong {
+            color: #102d4f;
+            font-size: 17px;
+        }
+
+
+        /* =========================================
+           RIGHT - APPLICATION CARD
+        ========================================= */
+
+        .application-card {
+            background: #ffffff;
+            border: 1px solid #d8e0ea;
+            border-radius: 12px;
+            padding: 32px;
+            box-sizing: border-box;
+        }
+
+
+        .application-card > h2 {
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+
+        .application-card > p {
+            color: #526b87;
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           APPLICATION PROCESS
+        ========================================= */
+
+
+
+
+
+        /* =========================================
+           DOCUMENTS
+        ========================================= */
+
+        .documents-section {
+            border-top: 1px solid #dce3eb;
+            padding-top: 25px;
+        }
+
+
+        .documents-section h3 {
+            margin-bottom: 7px;
+        }
+
+
+        .documents-section > p {
+            margin-bottom: 20px;
+        }
+
+
+        /* =========================================
+           NOT ELIGIBLE
+        ========================================= */
+
+        .not-eligible-card {
+            min-height: 390px;
+
+            display: flex;
+            flex-direction: column;
+
+            box-sizing: border-box;
+        }
+
+
+        .status-icon {
+            width: 60px;
+            height: 60px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #fde8e8;
+            color: #b42318;
+
+            font-size: 28px;
+            font-weight: 700;
+
+            margin-bottom: 25px;
+        }
+
+
+        .status-label {
+            font-size: 13px !important;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: #1761ad !important;
+            margin: 0 0 8px !important;
+        }
+
+
+        .not-eligible-card h2 {
+            margin: 0 0 20px;
+            color: #102d4f;
+        }
+
+
+        .eligibility-reason {
+            padding: 18px 20px;
+
+            background: #f8fafc;
+
+            border-left: 4px solid #c62828;
+
+            border-radius: 5px;
+        }
+
+
+        .eligibility-reason strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #102d4f;
+        }
+
+
+        .eligibility-reason p {
+            margin: 0;
+            color: #48627f;
+            line-height: 1.7;
+        }
+
+
+        .not-eligible-action {
+            margin-top: auto;
+            padding-top: 30px;
+        }
+
+
+        .other-schemes-btn {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-height: 48px;
+            padding: 0 24px;
+
+            background: #1761ad;
+            color: #ffffff;
+
+            text-decoration: none;
+
+            border-radius: 5px;
+
+            font-weight: 700;
+
+            box-sizing: border-box;
+        }
+
+
+        .other-schemes-btn:hover {
+            background: #124f91;
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 850px) {
+
+            .apply-layout {
+                grid-template-columns: 1fr;
+            }
+
+
+            .scheme-summary,
+            .application-card {
+                width: 100%;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .apply-container {
+                padding: 30px 15px 50px;
+            }
+
+
+            .scheme-summary,
+            .application-card {
+                padding: 22px;
+            }
+
+
+            .grant-slab-card {
+                grid-template-columns: 1fr;
+            }
+
+
+            .eligibility-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+        /* ================= APPLICATION PROCESS ================= */
+
+        /* ================= APPLICATION PROCESS ================= */
+
+        .application-steps {
+            margin: 25px 0 30px;
+            padding: 22px;
+            background: #f8fafc;
+            border: 1px solid #dbe3ec;
+            border-radius: 12px;
+        }
+
+        .process-header {
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .process-header h3 {
+            margin: 0 0 6px;
+            font-size: 20px;
+            color: #0f2d52;
+        }
+
+        .process-header p {
+            margin: 0;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+
+        /* FLOW */
+
+        .process-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+
+        /* EACH STEP */
+
+        .process-step {
+            flex: 1;
+            min-width: 0;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            padding: 15px;
+
+            background: #ffffff;
+            border: 1px solid #d7e0ea;
+            border-radius: 10px;
+
+            min-height: 76px;
+        }
+
+
+        /* NUMBER */
+
+        .process-step .step-number {
+            flex-shrink: 0;
+
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #1f5fae;
+            color: #ffffff;
+
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+
+        /* TEXT */
+
+        .step-content {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .step-content strong {
+            font-size: 14px;
+            color: #0f2d52;
+        }
+
+        .step-content span {
+            font-size: 12px;
+            line-height: 1.4;
+            color: #64748b;
+        }
+
+
+        /* ARROW */
+
+        .process-arrow {
+            flex-shrink: 0;
+
+            font-size: 22px;
+            font-weight: 600;
+
+            color: #1f5fae;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .process-flow {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .process-step {
+                width: 100%;
+            }
+
+            .process-arrow {
+                text-align: center;
+                transform: rotate(90deg);
+            }
+
+        }
+        /*========== ELIGIBLE GRANT DETAILS CARD======*/
+        .grant-slab-card.eligible-slab {
+            background: #ecfdf5;
+            border: 2px solid #22c55e;
+            color: #166534;
+        }
+
+        .grant-slab-card.eligible-slab .slab-item small {
+            color: #15803d;
+        }
+
+        .grant-slab-card.eligible-slab .slab-item strong {
+            color: #166534;
+        }
+
+        .eligible-grant-badge {
+            color: #15803d;
+            font-weight: 700;
+        }
+
+
+        /* ================= FLOW ARROW ================= */
+
+        /* Since your HTML has 3 separate .step elements,
+           use arrows between them */
+
+        .application-steps .step:not(:last-child)::after {
+            content: "→";
+
+            position: absolute;
+            right: -30px;
+
+            font-size: 22px;
+            font-weight: 700;
+
+            color: #1f5fad;
+        }
+
+
+        /* Needed for arrow positioning */
+
+        .application-steps .step {
+            position: relative;
+        }
+
+
+        /* ================= APPLICATION CARD ================= */
+
+        .application-card {
+            background: #ffffff;
+            border: 1px solid #d7e0ea;
+            border-radius: 14px;
+            padding: 32px;
+            box-sizing: border-box;
+        }
+
+
+        /* ================= DOCUMENT SECTION ================= */
+
+        .documents-section {
+            margin-top: 25px;
+            padding-top: 25px;
+
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .documents-section h3 {
+            margin: 0 0 7px;
+            color: #0f2d55;
+            font-size: 19px;
+        }
+
+        .documents-section > p {
+            margin: 0 0 20px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+
+        /* ================= REQUIRED DOCUMENT CARDS ================= */
+
+        #requiredDocuments {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .required-document {
+            padding: 18px;
+
+            background: #f8fafc;
+
+            border: 1px solid #d7e0ea;
+            border-radius: 10px;
+
+            box-sizing: border-box;
+        }
+
+        .required-document label {
+            display: block;
+            margin-bottom: 10px;
+
+            color: #0f2d55;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .required-document input[type="file"] {
+            width: 100%;
+            box-sizing: border-box;
+
+            padding: 10px;
+
+            background: #ffffff;
+
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+
+            font-size: 14px;
+        }
+
+
+        /* ================= SUBMIT BUTTON ================= */
+
+        .application-card .auth-submit {
+            width: 100%;
+            margin-top: 20px;
+
+            padding: 14px 20px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: #1f5fad;
+            color: #ffffff;
+
+            font-size: 16px;
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .application-card .auth-submit:hover {
+            background: #174d91;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 900px) {
+
+            .application-steps .step {
+                width: 100%;
+                margin: 0 0 15px;
+            }
+
+            .application-steps .step:not(:last-child)::after {
+                content: "↓";
+
+                right: auto;
+                left: 50%;
+                bottom: -28px;
+
+                transform: translateX(-50%);
+            }
+
+        }
+
+        .document-verification-box {
+            margin-top: 25px;
+            padding: 18px 20px;
+            background: #fff8df;
+            border: 1px solid #f0c94d;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .document-verification-box h3 {
+            margin: 0 0 8px;
+            color: #7a5a00;
+        }
+
+        .document-verification-box p {
+            margin: 0;
+            color: #5f5200;
+            line-height: 1.6;
+        }
+        .application-note {
+            margin-top: 14px;
+            padding: 10px 14px;
+            background: #fff8df;
+            border: 1px solid #f0c94d;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .application-note strong {
+            display: block;
+            color: #7a5a00;
+            font-size: 15px;
+            margin-bottom: 3px;
+        }
+
+        .application-note p {
+            margin: 0;
+            color: #5f5200;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+
+        .eligible-grant-message {
+            margin-top: 10px;
+        }
+
+        .eligible-grant-box {
+            padding: 10px 14px;
+            background: #e9f9ef;
+            border: 1px solid #22b85a;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .eligible-grant-box span {
+            display: inline;
+            color: #176b38;
+            font-size: 14px;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .eligible-grant-box strong {
+            display: inline;
+            color: #08752f;
+            font-size: 18px;
+        }
+
+    </style>
+</head>
+
+
+<body class="dashboard-page">
+
+
+<header class="navbar">
+
+    <div class="logo">
+        Digital<span>Subsidy</span>
+    </div>
+
+    <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="schemes.html">Schemes</a>
+        <a href="eligible-schemes.html">Eligible Schemes</a>
+        <a href="my-applications.html">My Applications</a>
+    </nav>
+
+
+    <div class="profile-menu">
+
+        <button class="profile-button" id="profileButton">
+
+            <span class="user-icon">👤</span>
+
+            <span id="navUserEmail">
+                User
+            </span>
+
+            <span class="dropdown-arrow">
+                ▼
+            </span>
+
+        </button>
+
+
+        <div class="profile-dropdown" id="profileDropdown">
+
+            <div class="dropdown-user">
+
+                <div class="dropdown-avatar">
+                    👤
+                </div>
+
+                <div>
+
+                    <strong id="dropdownEmail">
+                        User
+                    </strong>
+
+                    <small>
+                        User
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="dropdown-divider"></div>
+
+
+            <a href="profile.html">
+                👤 My Profile
+            </a>
+
+
+            <button id="logoutBtn">
+                🚪 Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="apply-container">
+
+
+    <div class="apply-header">
+
+        <p class="hero-tag">
+            SUBSIDY APPLICATION
+        </p>
+
+        <h1>
+            Apply for Scheme
+        </h1>
+
+        <p>
+            Review the scheme information and submit the required documents.
+        </p>
+
+
+        <!-- APPLICATION FLOW -->
+        <!-- APPLICATION PROCESS -->
+
+        <!-- APPLICATION PROCESS -->
+
+        <div class="application-steps">
+
+            <div class="process-header">
+                <h3>Application Process</h3>
+                <p>Follow these simple steps to complete your application.</p>
+            </div>
+
+            <div class="process-flow">
+
+                <div class="process-step">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <div class="step-content">
+                        <strong>Review Eligibility</strong>
+                        <span>Check eligibility and grant details.</span>
+                    </div>
+
+                </div>
+
+
+                <div class="process-arrow">
+                    →
+                </div>
+
+
+                <div class="process-step">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <div class="step-content">
+                        <strong>Upload Documents</strong>
+                        <span>Upload all required documents.</span>
+                    </div>
+
+                </div>
+
+
+                <div class="process-arrow">
+                    →
+                </div>
+
+
+                <div class="process-step">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <div class="step-content">
+                        <strong>Submit Application</strong>
+                        <span>Review and submit your application.</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    <div class="apply-layout">
+
+        <!-- ================= LEFT : SCHEME DETAILS ================= -->
+
+        <div class="scheme-summary">
+
+            <p class="hero-tag">
+                SELECTED SCHEME
+            </p>
+
+            <h2 id="schemeName">
+                Loading...
+            </h2>
+
+            <p id="schemeDescription">
+                Loading scheme description...
+            </p>
+
+
+            <!-- SCHEME BENEFITS -->
+
+            <div class="scheme-benefits">
+
+                <h3>
+                    Scheme Benefits
+                </h3>
+
+                <p id="schemeBenefits">
+                    Loading benefits...
+                </p>
+
+            </div>
+
+
+            <!-- GRANT SLABS -->
+
+            <div class="grant-section">
+
+                <h3>
+                    Grant Details
+                </h3>
+
+                <div id="grantSlabs">
+
+                    <p>
+                        Loading grant details...
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ELIGIBILITY -->
+
+            <div class="eligibility-section">
+
+                <h3>
+                    Eligibility Requirements
+                </h3>
+
+                <div class="eligibility-grid">
+
+                    <div class="eligibility-item">
+
+                        <small>
+                            Age Limit
+                        </small>
+
+                        <strong id="ageLimit">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="eligibility-item">
+
+                        <small>
+                            Eligible Occupation
+                        </small>
+
+                        <strong id="occupation">
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= RIGHT : APPLICATION ================= -->
+
+        <div class="application-card">
+
+            <div class="application-header">
+
+                <p class="hero-tag">
+                    APPLICATION
+                </p>
+
+                <h2>
+                    Submit Your Application
+                </h2>
+
+                <p>
+                    Upload the required documents to complete your application.
+                </p>
+
+            </div>
+
+
+            <!-- APPLICATION PROCESS -->
+
+
+
+            <!-- REQUIRED DOCUMENTS -->
+
+            <div class="documents-section">
+
+                <div class="documents-header">
+
+                    <h3>
+                        Required Documents
+                    </h3>
+
+                    <p>
+                        Please upload the following documents.
+                    </p>
+
+                </div>
+                <form id="applicationForm">
+
+                    <div id="requiredDocuments">
+                        <p>
+                            Loading required documents...
+                        </p>
+                    </div>
+
+
+                    <div class="application-note">
+
+                        <strong>
+                            Document Verification
+                        </strong>
+
+                        <p>
+                            Please upload clear and updated PDF copies of all required
+                            documents for verification.
+                        </p>
+
+                    </div>
+
+
+                    <div id="eligibleGrantMessage"
+                         class="eligible-grant-message">
+                    </div>
+
+
+                    <button type="submit" class="auth-submit">
+                        Submit Application
+                    </button>
+
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+    </div>
+</main>
+
+
+<footer>
+
+    <div class="footer-logo">
+        Digital<span>Subsidy</span>
+    </div>
+
+    <p>
+        Simple, transparent and accessible subsidy applications.
+    </p>
+
+    <div class="footer-line"></div>
+
+    <small>
+        © 2026 Digital Subsidy Platform. All rights reserved.
+    </small>
+
+</footer>
+
+
+<script src="js/apply.js"></script>
+<script src="js/navbar.js"></script>
+
+</body>
+
+</html>

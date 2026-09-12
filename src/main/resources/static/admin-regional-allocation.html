@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Regional Allocation</title>
+
+    <style>
+
+        /* =====================================================
+           BASIC
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+
+            background: #f5f8fc;
+
+            color: #0f172a;
+            font-family: Arial, sans-serif;
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+            height: 70px;
+
+            background: white;
+
+            border-bottom: 1px solid #e2e8f0;
+
+            display: grid;
+
+            grid-template-columns: 250px 1fr 250px;
+
+            align-items: center;
+
+            padding: 0 128px;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+        }
+
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
+        .logo {
+            font-size: 21px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #2563eb;
+        }
+
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
+
+        .navbar nav {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 4px;
+
+            white-space: nowrap;
+        }
+
+        .navbar nav a {
+            text-decoration: none;
+
+            color: #475569;
+
+            padding: 11px 13px;
+
+            border-radius: 8px;
+
+
+            font-size: 14px;
+
+            font-weight: 500;
+
+            white-space: nowrap;
+        }
+
+        .navbar nav a:hover {
+            background: #f1f5f9;
+        }
+
+        .navbar nav a.active {
+            color: #2563eb;
+
+            background: #eff6ff;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           PROFILE
+        ===================================================== */
+
+        .profile-menu {
+            position: relative;
+
+            display: flex;
+
+            justify-content: flex-end;
+        }
+
+        .profile-button {
+            width: 250px;
+
+            height: 40px;
+
+            padding: 0 20px;
+
+            background: white;
+
+            border: 1px solid #dbe2ea;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+
+            font-size: 14px;
+        }
+
+        .arrow {
+            margin-left: auto;
+        }
+
+
+        /* =====================================================
+           PROFILE DROPDOWN
+        ===================================================== */
+
+        .profile-dropdown {
+            display: none;
+
+            position: absolute;
+
+            right: 0;
+
+            top: 67px;
+
+            width: 240px;
+
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 10px;
+
+            box-shadow:
+                    0 5px 18px rgba(0, 0, 0, 0.12);
+
+            padding: 12px;
+
+            z-index: 1100;
+        }
+
+        .profile-dropdown.show {
+            display: block;
+        }
+
+
+        /* =====================================================
+           DROPDOWN USER
+        ===================================================== */
+
+        .profile-user {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 7px;
+        }
+
+        .avatar {
+            width: 38px;
+
+            height: 38px;
+
+            border-radius: 50%;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: bold;
+        }
+
+        .profile-user strong {
+            display: block;
+
+            font-size: 14px;
+        }
+
+        .profile-user small {
+            display: block;
+
+            color: #64748b;
+
+            margin-top: 4px;
+
+            font-size: 13px;
+        }
+
+
+        /* =====================================================
+           DROPDOWN DIVIDER
+        ===================================================== */
+
+        .divider {
+            border-top: 1px solid #e2e8f0;
+
+            margin: 8px 0;
+        }
+
+
+        /* =====================================================
+           DROPDOWN BUTTON
+        ===================================================== */
+
+        .profile-dropdown button {
+            width: 100%;
+
+            padding: 10px;
+
+            background: transparent;
+
+            border: 0;
+
+            text-align: left;
+
+            cursor: pointer;
+
+            border-radius: 7px;
+
+
+            font-size: 14px;
+        }
+
+        .profile-dropdown button:hover {
+            background: #f8fafc;
+        }
+
+
+        /* =====================================================
+           PAGE
+        ===================================================== */
+
+        .page {
+            max-width: 1250px;
+
+            margin: auto;
+
+            padding: 30px;
+        }
+
+        .page-header {
+            margin-bottom: 25px;
+        }
+
+        .page-header h1 {
+            margin: 0 0 6px;
+
+            font-size: 28px;
+        }
+
+        .page-header p {
+            margin: 0;
+
+            color: #64748b;
+
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           CARD
+        ===================================================== */
+
+        .card {
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 13px;
+
+            padding: 24px;
+
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            margin: 0 0 20px;
+
+            font-size: 18px;
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns:
+            repeat(4, 1fr);
+
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 7px;
+
+            color: #475569;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+
+            padding: 11px;
+
+            border: 1px solid #dbe2ea;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            background: white;
+
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #2563eb;
+        }
+
+
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
+
+        .btn-container {
+            margin-top: 20px;
+
+            display: flex;
+
+            gap: 10px;
+        }
+
+
+        .btn-save {
+            padding: 10px 18px;
+
+            border: 0;
+
+            border-radius: 8px;
+
+            background: #2563eb;
+
+            color: white;
+
+            cursor: pointer;
+
+            font-weight: 600;
+        }
+
+        .btn-save:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-cancel {
+            padding: 10px 18px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 8px;
+
+            background: white;
+
+            color: #475569;
+
+            cursor: pointer;
+        }
+
+        .btn-edit {
+            background: #f59e0b;
+
+            color: white;
+
+            padding: 6px 11px;
+
+            border: 0;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+        }
+
+        .btn-delete {
+            background: #ef4444;
+
+            color: white;
+
+            padding: 6px 11px;
+
+            border: 0;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           FILTER
+        ===================================================== */
+
+        .filter-section {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+
+            padding: 14px;
+
+            border-radius: 9px;
+
+            margin-bottom: 20px;
+        }
+
+        .filter-section label {
+            font-size: 13px;
+
+            color: #475569;
+        }
+
+        .filter-section select {
+            padding: 9px 12px;
+
+            border: 1px solid #dbe2ea;
+
+            border-radius: 7px;
+
+            background: white;
+        }
+
+
+        /* =====================================================
+           TABLE
+        ===================================================== */
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+
+            padding: 13px;
+
+            background: #f8fafc;
+
+            color: #475569;
+
+            font-size: 12px;
+
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        td {
+            padding: 14px 13px;
+
+            font-size: 13px;
+
+            border-bottom: 1px solid #eef2f7;
+        }
+
+        tr:hover {
+            background: #f8fafc;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1400px) {
+
+            .navbar {
+                padding: 0 50px;
+
+                grid-template-columns:
+                220px 1fr 220px;
+            }
+
+            .profile-button {
+                width: 220px;
+            }
+        }
+
+
+        @media (max-width: 1100px) {
+
+            .navbar {
+                padding: 0 28px;
+
+                display: flex;
+            }
+
+            .navbar nav {
+                display: none;
+            }
+
+            .logo {
+                flex: 1;
+            }
+
+            .profile-menu {
+                margin-left: auto;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .page {
+                padding: 18px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-section {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .profile-button {
+                width: auto;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        Digital<span>Subsidy</span>
+    </div>
+
+
+    <nav>
+        <a href="admin-dashboard.html">Dashboard</a>
+        <a href="admin-schemes.html">Schemes</a>
+        <a href="admin-users.html">Users</a>
+        <a href="admin-applications.html">Applications</a>
+        <a href="officer-bank-details.html"> Bank Details</a>
+        <a href="admin-payments.html"> Payments</a>
+        <a href="admin-regional-allocation.html" class="active">Regional Allocation</a>
+
+    </nav>
+
+
+    <!-- ================= PROFILE ================= -->
+
+    <div class="profile-menu">
+
+        <button
+                class="profile-button"
+                id="profileButton">
+
+            👤
+
+            <span id="staffEmail">
+                Loading...
+            </span>
+
+            <span class="arrow">
+                ▼
+            </span>
+
+        </button>
+
+
+        <div
+                class="profile-dropdown"
+                id="profileDropdown">
+
+
+            <div class="profile-user">
+
+                <div class="avatar">
+                    A
+                </div>
+
+                <div>
+
+                    <strong id="dropdownStaffEmail">
+                        Loading...
+                    </strong>
+
+                    <small>
+                        Administrator
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="divider"></div>
+
+
+            <button id="myProfileBtn">
+                👤 My Profile
+            </button>
+
+            <button id="logoutBtn">
+                🚪 Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- ================= PAGE ================= -->
+
+<main class="page">
+
+
+    <div class="page-header">
+
+        <h1>
+            Regional Allocation
+        </h1>
+
+        <p>
+            Manage subsidy fund allocation across different regions.
+        </p>
+
+    </div>
+
+
+
+    <!-- ================= FORM CARD ================= -->
+
+    <section class="card">
+
+        <h2>
+            Create Regional Allocation
+        </h2>
+
+
+        <form id="allocationForm">
+
+            <input
+                    type="hidden"
+                    id="allocationId">
+
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label for="schemeSelect">
+                        Select Scheme
+                    </label>
+
+                    <select
+                            id="schemeSelect"
+                            required>
+
+                        <option value="">
+                            -- Select Scheme --
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="location">
+                        Location
+                    </label>
+
+                    <select
+                            id="location"
+                            required>
+
+                        <option value="">
+                            Select state
+                        </option>
+
+                        <option>Andhra Pradesh</option>
+                        <option>Arunachal Pradesh</option>
+                        <option>Assam</option>
+                        <option>Bihar</option>
+                        <option>Chhattisgarh</option>
+                        <option>Goa</option>
+                        <option>Gujarat</option>
+                        <option>Haryana</option>
+                        <option>Himachal Pradesh</option>
+                        <option>Jharkhand</option>
+                        <option>Karnataka</option>
+                        <option>Kerala</option>
+                        <option>Madhya Pradesh</option>
+                        <option>Maharashtra</option>
+                        <option>Manipur</option>
+                        <option>Meghalaya</option>
+                        <option>Mizoram</option>
+                        <option>Nagaland</option>
+                        <option>Odisha</option>
+                        <option>Punjab</option>
+                        <option>Rajasthan</option>
+                        <option>Sikkim</option>
+                        <option>Tamil Nadu</option>
+                        <option>Telangana</option>
+                        <option>Tripura</option>
+                        <option>Uttar Pradesh</option>
+                        <option>Uttarakhand</option>
+                        <option>West Bengal</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="allocatedBudget">
+                        Allocated Budget (₹)
+                    </label>
+
+                    <input
+                            type="number"
+                            step="0.01"
+                            id="allocatedBudget"
+                            placeholder="e.g. 5000000"
+                            required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="usedBudget">
+                        Used Budget (₹)
+                    </label>
+
+                    <input
+                            type="number"
+                            step="0.01"
+                            id="usedBudget"
+                            placeholder="0.00">
+
+                </div>
+
+            </div>
+
+
+            <div class="btn-container">
+
+                <button
+                        type="submit"
+                        id="saveBtn"
+                        class="btn-save">
+
+                    Save Allocation
+
+                </button>
+
+
+                <button
+                        type="button"
+                        id="cancelBtn"
+                        class="btn-cancel"
+                        onclick="resetForm()"
+                        style="display:none;">
+
+                    Cancel
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+
+    <!-- ================= TABLE CARD ================= -->
+
+    <section class="card">
+
+        <h2>
+            Regional Allocations
+        </h2>
+
+
+        <div class="filter-section">
+
+            <label for="filterSchemeSelect">
+
+                <strong>
+                    Filter by Scheme:
+                </strong>
+
+            </label>
+
+
+            <select
+                    id="filterSchemeSelect"
+                    onchange="filterByScheme(this.value)">
+
+                <option value="ALL">
+                    Show All Allocations
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>
+                        ID
+                    </th>
+
+                    <th>
+                        Scheme ID
+                    </th>
+
+                    <th>
+                        Region
+                    </th>
+
+                    <th>
+                        Allocated Budget
+                    </th>
+
+                    <th>
+                        Used Budget
+                    </th>
+                    <th>Remaining Budget</th>
+
+                    <th>
+                        Actions
+                    </th>
+
+                </tr>
+
+                </thead>
+
+
+                <tbody id="allocationTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<script src="js/admin-regional-allocation.js"></script>
+
+</body>
+</html>

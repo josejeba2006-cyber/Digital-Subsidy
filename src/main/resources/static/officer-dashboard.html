@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Officer Dashboard - Digital Subsidy</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        /* Officer-specific CSS */
+
+        .officer-page {
+            background: #f8fafc;
+        }
+
+        .officer-header {
+            margin-bottom: 35px;
+        }
+
+        .officer-header .hero-tag {
+            margin-bottom: 8px;
+        }
+
+        .officer-header h1 {
+            margin-bottom: 8px;
+        }
+
+        .officer-header p {
+            color: #64748b;
+        }
+
+        .officer-applications {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+
+        .officer-card-header h3 {
+            margin: 5px 0 8px;
+        }
+
+
+        .officer-detail small {
+            display: block;
+            color: #64748b;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .officer-detail strong {
+            font-size: 15px;
+        }
+
+        .officer-action {
+            margin-top: 20px;
+        }
+        .profile-dropdown.show {
+            display: block;
+        }
+        .officer-stats {
+            max-width: 1100px;
+            margin: 0 auto 30px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .officer-stat-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 22px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .officer-stat-icon {
+            font-size: 28px;
+        }
+
+        .officer-stat-card small {
+            display: block;
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+
+        .officer-stat-card strong {
+            font-size: 25px;
+        }
+        /* ================= APPLICATION CARDS ================= */
+
+        .officer-application-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 28px;
+            margin-bottom: 22px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+
+
+        .officer-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+
+        .application-number {
+            color: #2563eb;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+
+        .officer-card-header h3 {
+            font-size: 22px;
+            margin: 8px 0;
+            color: #1e293b;
+        }
+
+
+        .applicant-email {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+
+        .officer-status {
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+
+        /* ================= STATUS COLORS ================= */
+
+        .officer-status.submitted {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .officer-status.approved {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .officer-status.rejected {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+
+        /* ================= APPLICATION DETAILS ================= */
+
+        .officer-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+
+        .officer-detail {
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 10px;
+            border: 1px solid #f1f5f9;
+        }
+
+
+        .officer-detail small {
+            display: block;
+            color: #64748b;
+            font-size: 12px;
+            margin-bottom: 7px;
+        }
+
+
+        .officer-detail strong {
+            font-size: 16px;
+            color: #1e293b;
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .officer-action {
+            margin-top: 5px;
+        }
+
+
+        .officer-action .btn {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 11px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+
+        .officer-action .btn:hover {
+            background: #1d4ed8;
+        }
+
+
+        /* ================= BANK NAVIGATION ================= */
+
+        nav a.bank-link {
+            color: #7c3aed;
+            font-weight: 600;
+        }
+
+
+        nav a.bank-link:hover {
+            color: #6d28d9;
+            background: #f3e8ff;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 700px) {
+
+            .officer-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .officer-details {
+                grid-template-columns: 1fr;
+            }
+
+            .officer-card-header {
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+
+</head>
+<body class="dashboard-page">
+
+<header class="navbar">
+
+    <div class="logo">
+        Digital<span>Subsidy</span>
+    </div>
+
+    <nav>
+        <a href="officer-dashboard.html" class="active">
+            Applications
+        </a>
+        <a href="officer-bank-details.html" class="bank-link">
+            🏦 Bank Verification
+        </a>
+    </nav>
+
+    <div class="profile-menu">
+
+        <button class="profile-button" id="profileButton">
+
+            <span class="user-icon">👤</span>
+
+            <span id="staffEmail">
+                Officer
+            </span>
+
+            <span class="dropdown-arrow">
+                ▼
+            </span>
+
+        </button>
+
+        <div class="profile-dropdown" id="profileDropdown">
+
+            <div class="dropdown-user">
+
+                <div class="dropdown-avatar">
+                    👤
+                </div>
+
+                <div>
+
+                    <strong id="dropdownStaffEmail">
+                        Officer
+                    </strong>
+
+                    <small>
+                        Subsidy Officer
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div class="dropdown-divider"></div>
+
+            <button id="logoutBtn">
+                🚪 Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="profile-container officer-page">
+
+    <div class="profile-header officer-header">
+
+        <p class="hero-tag">
+            OFFICER PORTAL
+        </p>
+
+        <h1>
+            Application Review
+        </h1>
+
+        <p>
+            Review applications and verify submitted documents.
+        </p>
+
+    </div>
+    <div class="officer-stats">
+
+        <div class="officer-stat-card">
+
+            <span class="officer-stat-icon">📋</span>
+
+            <div>
+                <small>Total Applications</small>
+                <strong id="totalCount">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="officer-stat-card">
+
+            <span class="officer-stat-icon">⏳</span>
+
+            <div>
+                <small>Yet to Approve / Reject</small>
+                <strong id="pendingCount">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="officer-stat-card">
+
+            <span class="officer-stat-icon">❌</span>
+
+            <div>
+                <small>Rejected</small>
+                <strong id="rejectedCount">0</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="applicationsContainer"
+         class="officer-applications">
+
+        <div class="empty-state">
+
+            <div>📋</div>
+
+            <h3>
+                Loading applications...
+            </h3>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <div class="footer-logo">
+        Digital<span>Subsidy</span>
+    </div>
+
+    <p>
+        Simple, transparent and accessible subsidy applications.
+    </p>
+
+    <div class="footer-line"></div>
+
+    <small>
+        © 2026 Digital Subsidy Platform.
+        All rights reserved.
+    </small>
+
+</footer>
+
+
+<script src="js/officer-dashboard.js"></script>
+
+
+</body>
+</html>

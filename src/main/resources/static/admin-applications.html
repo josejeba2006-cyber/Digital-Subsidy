@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Manage Applications - Digital Subsidy
+    </title>
+
+    <link rel="stylesheet"
+          href="css/style.css">
+    <style>
+        .scheme-table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 30px;
+        }
+
+        .scheme-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        .scheme-table th,
+        .scheme-table td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            white-space: nowrap;
+        }
+
+        .scheme-table th {
+            font-weight: 600;
+        }
+        .profile-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 50px 70px;
+        }
+        .navbar nav a.active {
+            color: #2563eb;
+
+            background: #eff6ff;
+
+            font-weight: 700;
+        }
+    </style>
+
+</head>
+
+
+<body class="dashboard-page">
+
+
+<header class="navbar">
+
+    <div class="logo">
+        Digital<span>Subsidy</span>
+    </div>
+
+
+    <nav>
+        <a href="admin-dashboard.html">Dashboard</a>
+        <a href="admin-schemes.html">Schemes</a>
+        <a href="admin-users.html">Users</a>
+        <a href="admin-applications.html" class="active"> Applications</a>
+        <a href="officer-bank-details.html"> Bank Details</a>
+        <a href="admin-payments.html"> Payments</a>
+        <a href="admin-regional-allocation.html">Regional Allocation</a>
+
+    </nav>
+
+
+    <div class="profile-menu">
+
+        <button class="profile-button"
+                id="profileButton">
+
+            <span>👤</span>
+
+            <span id="staffEmail">
+                Admin
+            </span>
+
+            <span>▼</span>
+
+        </button>
+
+
+        <div class="profile-dropdown"
+             id="profileDropdown">
+
+            <div class="dropdown-user">
+
+                <div class="dropdown-avatar">
+                    👤
+                </div>
+
+                <div>
+
+                    <strong>
+                        Admin
+                    </strong>
+
+                    <small>
+                        Administrator
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="dropdown-divider"></div>
+
+
+            <button id="logoutBtn">
+                🚪 Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<main class="profile-container">
+
+
+    <div class="scheme-management-header">
+
+        <div>
+
+            <p class="hero-tag">
+                ADMIN PORTAL
+            </p>
+
+            <h1>
+                Manage Applications
+            </h1>
+
+            <p>
+                Review and manage subsidy applications.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <button
+            class="history-btn"
+            onclick="window.location.href='application-history.html'">
+
+        📜 View Older Records
+
+    </button>
+    <!-- APPLICATION DETAILS / UPDATE -->
+
+    <div class="scheme-form-card"
+         id="applicationFormCard"
+         style="display: none;">
+
+        <h2>
+            Update Application
+        </h2>
+
+
+        <form id="applicationForm">
+
+
+            <div class="form-group">
+
+                <label>
+                    Applicant
+                </label>
+
+                <input type="text"
+                       id="applicantName"
+                       readonly>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Scheme
+                </label>
+
+                <input type="text"
+                       id="schemeName"
+                       readonly>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Application Status
+                </label>
+
+                <select id="applicationStatus">
+
+                    <option value="PENDING">
+                        Pending
+                    </option>
+
+                    <option value="APPROVED">
+                        Approved
+                    </option>
+
+                    <option value="REJECTED">
+                        Rejected
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Remarks
+                </label>
+
+                <textarea id="remarks"
+                          rows="4">
+                </textarea>
+
+            </div>
+
+
+            <div class="form-group"
+                 id="rejectionReasonGroup"
+                 style="display: none;">
+
+                <label>
+                    Rejection Reason
+                </label>
+
+                <textarea id="rejectionReason"
+                          rows="3">
+                </textarea>
+
+            </div>
+
+
+            <div style="
+                display:flex;
+                gap:10px;
+                margin-top:20px;
+            ">
+
+                <button type="submit"
+                        class="add-scheme-btn">
+
+                    Update Application
+
+                </button>
+
+
+                <button type="button"
+                        class="action-btn"
+                        id="cancelApplicationBtn">
+
+                    Cancel
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+
+
+    <!-- APPLICATION TABLE -->
+
+    <div class="scheme-table-container">
+
+
+        <table class="scheme-table">
+
+
+            <thead>
+
+            <tr>
+
+                <th>ID</th>
+
+                <th>Applicant</th>
+
+                <th>Scheme</th>
+
+                <th>Applied Date</th>
+
+                <th>Status</th>
+
+                <th>Action</th>
+
+            </tr>
+
+            </thead>
+
+
+            <tbody id="applicationsTableBody">
+
+            <tr>
+
+                <td colspan="6">
+                    Loading applications...
+                </td>
+
+            </tr>
+
+            </tbody>
+
+
+        </table>
+
+    </div>
+
+
+</main>
+
+
+
+<script src="js/admin-applications.js"></script>
+<script src="js/admin-dashboard.js"></script>
+</body>
+
+</html>

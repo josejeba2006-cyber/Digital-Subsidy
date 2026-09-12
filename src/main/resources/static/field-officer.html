@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Field Officer Verification</title>
+
+    <style>
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            height: 70px;
+            background: white;
+            display: flex;
+            align-items: center;
+            padding: 0 45px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.08);
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 700;
+            color: #172033;
+        }
+
+        .logo span {
+            color: #2563eb;
+        }
+
+        .navbar nav {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .navbar nav a {
+            text-decoration: none;
+            color: #172033;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .navbar nav a.active {
+            color: #2563eb;
+        }
+        .profile-menu{margin-left:auto;position:relative}
+        .profile-button{height:48px;padding:0 14px;display:flex;align-items:center;gap:8px;background:white;border:1px solid #d6dce5;border-radius:8px;cursor:pointer;font-size:15px}
+        .profile-button .dropdown-arrow{margin-left:15px}
+        .profile-dropdown{display:none;position:absolute;right:0;top:55px;width:240px;background:white;border-radius:10px;box-shadow:0 5px 18px rgba(0,0,0,.12);padding:12px;z-index:1000}
+        .profile-dropdown.show{display:block}
+        .dropdown-user{display:flex;align-items:center;gap:10px;padding:6px 5px 12px}
+        .dropdown-avatar{width:40px;height:40px;border-radius:50%;background:#eef4ff;display:flex;align-items:center;justify-content:center}
+        .dropdown-user strong{display:block;font-size:15px}
+        .dropdown-user small{display:block;font-size:13px;color:#64748b;margin-top:4px}
+        .dropdown-divider{border-top:1px solid #ddd;margin:2px 0 5px}
+        #myProfileBtn,#logoutBtn{width:100%;padding:10px 6px;border:0;background:transparent;text-align:left;font-size:15px;cursor:pointer;border-radius:5px}
+        #myProfileBtn:hover,#logoutBtn:hover{background:#f5f7fa}
+
+        /* ================= PAGE ================= */
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f5f7fa;
+        }
+
+        .container {
+            width: 95%;
+            margin: 40px auto;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th,
+        td {
+            padding: 14px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #f0f2f5;
+        }
+
+        button {
+            padding: 8px 12px;
+            margin: 3px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #message {
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .review-btn {
+            background: #0d6efd;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .review-btn:hover {
+            background: #0b5ed7;
+        }
+
+        .review-btn:active {
+            transform: scale(0.98);
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        Digital<span>Subsidy</span>
+    </div>
+
+
+    <nav>
+
+        <a href="field-officer.html"
+           class="active">
+            Field Verification
+        </a>
+
+    </nav>
+
+
+    <!-- PROFILE -->
+
+    <div class="profile-menu">
+
+        <button class="profile-button"
+                id="profileButton">
+
+            <span class="user-icon">
+                👤
+            </span>
+
+            <span id="staffEmail">
+                Loading...
+            </span>
+
+            <span class="dropdown-arrow">
+                ▼
+            </span>
+
+        </button>
+
+
+        <div class="profile-dropdown"
+             id="profileDropdown">
+
+
+            <!-- USER INFO -->
+
+            <div class="dropdown-user">
+
+                <div class="dropdown-avatar">
+                    👤
+                </div>
+
+                <div>
+
+                    <strong id="dropdownStaffEmail">
+                        Loading...
+                    </strong>
+
+                    <small>
+                        Field Officer
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="dropdown-divider"></div>
+
+
+
+            <!-- LOGOUT -->
+
+            <button id="logoutBtn">
+                🚪&nbsp;&nbsp; Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="container">
+
+    <h1>
+        Field Officer Verification
+    </h1>
+
+    <p class="subtitle">
+        Review applications submitted for ground verification
+    </p>
+
+    <div id="message"></div>
+
+
+    <table>
+
+        <thead>
+
+        <tr>
+
+            <th>Application ID</th>
+
+            <th>Scheme</th>
+
+            <th>Applicant</th>
+
+            <th>Eligibility Score</th>
+
+            <th>Routing</th>
+
+            <th>Status</th>
+
+            <th>Action</th>
+
+        </tr>
+
+        </thead>
+
+
+        <tbody id="applicationsContainer">
+
+        <tr>
+
+            <td colspan="7">
+                Loading applications...
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<!-- ================= EXISTING FIELD OFFICER JS ================= -->
+
+<script src="js/field-officer.js"></script>
+
+
+<!-- ================= PROFILE ONLY ================= -->
+
+
+
+</body>
+
+</html>

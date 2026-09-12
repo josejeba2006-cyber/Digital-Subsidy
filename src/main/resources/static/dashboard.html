@@ -1,0 +1,1773 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - Digital Subsidy</title>
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
+    <style>
+
+        /* =====================================================
+           GOVERNMENT DASHBOARD
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f5f8fc;
+            color: #172033;
+        }
+
+
+        /* =====================================================
+           DASHBOARD CONTAINER
+        ===================================================== */
+
+        .dashboard-container {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+
+        /* =====================================================
+           WELCOME SECTION
+        ===================================================== */
+
+        .dashboard-welcome {
+            background: white;
+
+            border: 1px solid #dfe5ec;
+
+            border-radius: 12px;
+
+            padding: 30px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 25px;
+
+            margin-bottom: 25px;
+        }
+
+        .dashboard-welcome h1 {
+            margin: 8px 0;
+
+            font-size: 30px;
+        }
+
+        .dashboard-welcome p {
+            color: #64748b;
+
+            margin: 5px 0;
+
+            font-size: 15px;
+        }
+
+        .portal-badge {
+            display: inline-block;
+
+            padding: 6px 12px;
+
+            background: #eff6ff;
+
+            color: #1d4ed8;
+
+            border-radius: 5px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: .5px;
+        }
+
+
+        /* =====================================================
+           GOVERNMENT NOTICE
+        ===================================================== */
+
+        .government-notice {
+            background: #eff6ff;
+
+            border-left: 4px solid #2563eb;
+
+            padding: 15px 18px;
+
+            border-radius: 8px;
+
+            margin-bottom: 25px;
+
+            display: flex;
+
+            gap: 12px;
+
+            align-items: flex-start;
+        }
+
+        .notice-icon {
+            font-size: 22px;
+        }
+
+        .government-notice strong {
+            display: block;
+
+            margin-bottom: 4px;
+
+            font-size: 14px;
+        }
+
+        .government-notice p {
+            margin: 0;
+
+            color: #475569;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           STATISTICS
+        ===================================================== */
+
+        .dashboard-stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 16px;
+
+            margin-bottom: 22px;
+        }
+
+        .dashboard-stat-card {
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 10px;
+
+            padding: 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+        }
+
+        .stat-icon {
+            width: 45px;
+
+            height: 45px;
+
+            border-radius: 8px;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 21px;
+        }
+
+        .dashboard-stat-card small {
+            display: block;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            margin-bottom: 5px;
+        }
+
+        .dashboard-stat-card strong {
+            display: block;
+
+            font-size: 22px;
+        }
+
+
+        /* =====================================================
+           SECTION HEADING
+        ===================================================== */
+
+        .dashboard-section {
+            margin-bottom: 22px;
+        }
+
+        .section-heading {
+            margin-bottom: 18px;
+        }
+
+        .section-heading p {
+            margin: 0 0 5px;
+
+            color: #2563eb;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+
+            font-size: 23px;
+        }
+
+        .section-description {
+            color: #64748b;
+
+            font-size: 14px;
+
+            margin-top: 6px;
+        }
+
+
+        /* =====================================================
+           QUICK ACTIONS
+        ===================================================== */
+
+        .quick-actions {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+        .quick-card {
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 10px;
+
+            padding: 20px;
+
+            text-decoration: none;
+
+            color: inherit;
+
+            transition: .2s;
+        }
+
+        .quick-card:hover {
+            border-color: #2563eb;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                    0 6px 18px rgba(15,23,42,.07);
+        }
+
+        .quick-icon {
+            width: 42px;
+
+            height: 42px;
+
+            background: #eff6ff;
+
+            border-radius: 8px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 20px;
+
+            margin-bottom: 13px;
+        }
+
+        .quick-card h3 {
+            margin: 0 0 7px;
+
+            font-size: 16px;
+        }
+
+        .quick-card p {
+            margin: 0;
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           SUBSIDY APPLICATION PROCESS
+        ===================================================== */
+
+        .process-card {
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 12px;
+
+            padding: 25px;
+        }
+
+        .process-intro {
+            color: #64748b;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            margin-bottom: 25px;
+
+            max-width: 900px;
+        }
+
+        .process-list {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+        }
+
+        .process-step {
+            position: relative;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 9px;
+
+            padding: 18px;
+
+            background: #f8fafc;
+        }
+
+        .step-number {
+            width: 32px;
+
+            height: 32px;
+
+            border-radius: 50%;
+
+            background: #2563eb;
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 12px;
+        }
+
+        .process-step h3 {
+            margin: 0 0 7px;
+
+            font-size: 15px;
+        }
+
+        .process-step p {
+            margin: 0;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           DETAILED WORKFLOW
+        ===================================================== */
+
+        .workflow-card {
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 12px;
+
+            padding: 25px;
+        }
+
+        .workflow {
+            display: grid;
+            grid-template-columns:
+        1fr 55px 1fr 55px 1fr 55px 1fr 55px 1fr 55px 1fr;
+
+            align-items: start;
+
+            padding: 10px 5px;
+
+            width: 100%;
+        }
+
+        .workflow-item {
+            min-width: 0;
+
+            text-align: center;
+
+            position: relative;
+        }
+
+        .workflow-circle {
+            width: 48px;
+
+            height: 48px;
+
+            border-radius: 50%;
+
+            background: #eff6ff;
+
+            border: 2px solid #2563eb;
+
+            color: #2563eb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin: 0 auto 10px;
+
+            font-weight: 700;
+        }
+
+        .workflow-item h4 {
+            margin: 0 0 5px;
+
+            font-size: 13px;
+        }
+
+        .workflow-item p {
+            margin: 0;
+
+            color: #64748b;
+
+            font-size: 11px;
+
+            line-height: 1.4;
+        }
+
+        .workflow-line {
+            height: 2px;
+
+            width: 100%;
+
+            background: #cbd5e1;
+
+            margin-top: 24px;
+
+            flex-shrink: 0;
+        }
+
+
+        /* =====================================================
+           DISBURSEMENT EXPLANATION
+        ===================================================== */
+
+        .installment-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+        }
+
+        .installment-card {
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 10px;
+
+            padding: 20px;
+
+            position: relative;
+        }
+
+        .installment-number {
+            color: #2563eb;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+        }
+
+        .installment-card h3 {
+            margin: 0 0 8px;
+
+            font-size: 16px;
+        }
+
+        .installment-card p {
+            margin: 0;
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+        .percentage {
+            margin-top: 15px;
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+            color: #172033;
+        }
+
+
+        /* =====================================================
+           BENEFICIARY RESPONSIBILITIES
+        ===================================================== */
+
+        .responsibility-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+        .responsibility-card {
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 10px;
+
+            padding: 20px;
+        }
+
+        .responsibility-card h3 {
+            margin: 0 0 10px;
+
+            font-size: 16px;
+        }
+
+        .responsibility-card ul {
+            margin: 0;
+
+            padding-left: 20px;
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =====================================================
+           RECENT APPLICATIONS
+        ===================================================== */
+
+        .dashboard-section-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 15px;
+        }
+
+        .dashboard-section-header h2 {
+            margin: 0;
+
+            font-size: 23px;
+        }
+
+        .dashboard-section-header a {
+            color: #2563eb;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+        .applications-container {
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 12px;
+
+            padding: 20px;
+        }
+
+        .empty-state {
+            text-align: center;
+
+            padding: 35px 20px;
+
+            color: #64748b;
+        }
+
+        .empty-state > div {
+            font-size: 35px;
+
+            margin-bottom: 10px;
+        }
+
+        .empty-state h3 {
+            margin: 0 0 7px;
+
+            color: #172033;
+        }
+
+        .empty-state p {
+            font-size: 13px;
+
+            margin-bottom: 18px;
+        }
+
+
+        /* =====================================================
+           BUTTON
+        ===================================================== */
+
+        .primary-btn {
+            display: inline-block;
+
+            padding: 10px 18px;
+
+            background: #2563eb;
+
+            color: white;
+
+            border-radius: 7px;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+        .primary-btn:hover {
+            background: #1d4ed8;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1000px) {
+
+            .dashboard-stats,
+            .quick-actions {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .process-list {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .navbar nav {
+                display: none;
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .dashboard-container {
+                padding: 18px;
+            }
+
+            .dashboard-welcome {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .dashboard-stats,
+            .quick-actions,
+            .process-list,
+            .installment-grid,
+            .responsibility-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+        /* =====================================================
+   REDUCE SECTION SPACING
+===================================================== */
+
+        .dashboard-section {
+            margin-bottom: 22px;
+        }
+
+        .section-heading {
+            margin-bottom: 12px;
+        }
+
+        .process-card,
+        .workflow-card,
+        .responsibility-card,
+        .installment-card {
+            padding: 18px;
+        }
+
+        .process-intro {
+            margin-bottom: 15px;
+        }
+
+
+        /* Reduce space around responsibilities */
+
+        .responsibility-grid {
+            gap: 12px;
+        }
+
+
+        /* Reduce space before Recent Applications */
+
+        .dashboard-section-header {
+            margin-bottom: 10px;
+        }
+
+
+        /* Recent applications */
+
+        .applications-container {
+            padding: 15px;
+        }
+
+        .empty-state {
+            padding: 20px;
+        }
+        /* =====================================================
+   FORCE COMPACT DASHBOARD SPACING
+===================================================== */
+
+        .dashboard-container {
+            padding-top: 25px;
+            padding-bottom: 25px;
+        }
+
+
+        /* Remove unwanted space around every section */
+
+        .dashboard-container .dashboard-section {
+            margin-top: 0 !important;
+            margin-bottom: 22px !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            height: auto !important;
+            min-height: 0 !important;
+        }
+
+
+        /* Statistics */
+
+        .dashboard-container .dashboard-stats {
+            margin-top: 0 !important;
+            margin-bottom: 22px !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            height: auto !important;
+            min-height: 0 !important;
+        }
+
+
+        /* Section headings */
+
+        .dashboard-container .section-heading {
+            margin-top: 0 !important;
+            margin-bottom: 12px !important;
+            padding-top: 0 !important;
+        }
+
+
+        /* Quick actions */
+
+        .dashboard-container .quick-actions {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+
+        /* Process */
+
+        .dashboard-container .process-card {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+
+        /* Workflow */
+
+        .dashboard-container .workflow-card {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+
+        /* Installments */
+
+        .dashboard-container .installment-grid {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+
+        /* Responsibilities */
+
+        .dashboard-container .responsibility-grid {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+
+        /* Recent applications */
+
+        .dashboard-container .dashboard-section-header {
+            margin-top: 0 !important;
+            margin-bottom: 10px !important;
+        }
+
+
+        /* Recent application box */
+
+        .dashboard-container .applications-container {
+            margin-top: 0 !important;
+        }
+
+
+        /* Remove default heading margins */
+
+        .dashboard-container h1,
+        .dashboard-container h2,
+        .dashboard-container h3,
+        .dashboard-container h4,
+        .dashboard-container p {
+            margin-top: 0;
+        }
+        .navbar nav a.active {
+            color: #2563eb;
+
+            background: #eff6ff;
+
+            font-weight: 700;
+        }
+
+    </style>
+
+</head>
+
+
+<body class="dashboard-page">
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+<header class="navbar">
+
+    <div class="logo">
+        Digital<span>Subsidy</span>
+    </div>
+
+    <nav>
+
+        <a href="dashboard.html" class="active">
+            Dashboard
+        </a>
+
+        <a href="schemes.html">
+            Schemes
+        </a>
+
+        <a href="eligible-schemes.html">
+            Eligible Schemes
+        </a>
+
+        <a href="my-applications.html">
+            My Applications
+        </a>
+
+        <a href="analytics.html">
+            Analytics
+        </a>
+
+    </nav>
+
+    <!-- Profile -->
+    <div class="profile-menu">
+
+        <button class="profile-button" id="profileButton">
+            👤
+            <span id="navUserEmail">Loading...</span>
+            <span class="dropdown-arrow">▼</span>
+        </button>
+
+        <!-- Profile Dropdown -->
+        <div class="profile-dropdown" id="profileDropdown">
+
+            <div class="dropdown-user">
+
+                <div class="dropdown-avatar">
+                    👤
+                </div>
+
+                <div>
+                    <strong id="dropdownEmail">
+                        Loading...
+                    </strong>
+
+                    <small>
+                        Subsidy User
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="dropdown-divider"></div>
+
+            <button id="myProfileBtn">
+                👤 My Profile
+            </button>
+
+            <button id="logoutBtn">
+                🚪 Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN DASHBOARD
+===================================================== -->
+
+<main class="dashboard-container">
+
+
+    <!-- WELCOME -->
+
+    <section class="dashboard-welcome">
+
+        <div>
+
+            <span class="portal-badge">
+                GOVERNMENT SUBSIDY PORTAL
+            </span>
+
+            <h1>
+                Welcome back 👋
+            </h1>
+
+            <p>
+                Access government subsidy schemes, submit applications,
+                track verification and monitor your disbursement status.
+            </p>
+
+        </div>
+
+
+        <a href="schemes.html"
+           class="primary-btn">
+
+            Explore Schemes
+
+        </a>
+
+    </section>
+
+
+    <!-- GOVERNMENT NOTICE -->
+
+    <section class="government-notice">
+
+        <div class="notice-icon">
+            ℹ️
+        </div>
+
+        <div>
+
+            <strong>
+                How the Digital Subsidy process works
+            </strong>
+
+            <p>
+                Select a suitable subsidy scheme, check your eligibility,
+                submit the required application and documents, and complete
+                the verification process. Once your application and bank
+                details are approved, the sanctioned amount is released
+                through scheduled installments. Further installments are
+                released after the required utilization proof is submitted
+                and verified.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         STATISTICS
+    ================================================= -->
+
+
+    <!-- =================================================
+         QUICK ACTIONS
+    ================================================= -->
+
+    <section class="dashboard-section">
+
+        <div class="section-heading">
+
+            <p>
+                ONLINE SERVICES
+            </p>
+
+            <h2>
+                Subsidy Services
+            </h2>
+
+            <div class="section-description">
+                Use the following services to manage your subsidy journey.
+            </div>
+
+        </div>
+
+
+        <div class="quick-actions">
+
+
+            <a href="schemes.html"
+               class="quick-card">
+
+                <div class="quick-icon">
+                    🔍
+                </div>
+
+                <h3>
+                    Find Subsidy Schemes
+                </h3>
+
+                <p>
+                    Browse government subsidy schemes and view their
+                    eligibility requirements and benefits.
+                </p>
+
+            </a>
+
+
+            <a href="eligible-schemes.html"
+               class="quick-card">
+
+                <div class="quick-icon">
+                    ✓
+                </div>
+
+                <h3>
+                    Check Eligibility
+                </h3>
+
+                <p>
+                    View schemes for which your profile satisfies the
+                    configured eligibility requirements.
+                </p>
+
+            </a>
+
+
+            <a href="my-applications.html"
+               class="quick-card">
+
+                <div class="quick-icon">
+                    📄
+                </div>
+
+                <h3>
+                    Track Applications
+                </h3>
+
+                <p>
+                    Check application status, verification progress,
+                    documents and payment milestones.
+                </p>
+
+            </a>
+
+
+            <a href="schemes.html"
+               class="quick-card">
+
+                <div class="quick-icon">
+                    ➕
+                </div>
+
+                <h3>
+                    Apply for Subsidy
+                </h3>
+
+                <p>
+                    Select an eligible scheme and begin your online
+                    subsidy application.
+                </p>
+
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         APPLICATION PROCESS
+    ================================================= -->
+
+    <section class="dashboard-section">
+
+        <div class="section-heading">
+
+            <p>
+                APPLICATION PROCESS
+            </p>
+
+            <h2>
+                How to Receive the Subsidy
+            </h2>
+
+            <div class="section-description">
+                The complete process from scheme selection to final
+                installment.
+            </div>
+
+        </div>
+
+
+        <div class="process-card">
+
+            <p class="process-intro">
+
+                The Digital Subsidy platform follows a structured
+                verification and disbursement workflow. Each stage
+                must be completed before the application can proceed
+                to the next stage.
+
+            </p>
+
+
+            <div class="process-list">
+
+
+                <div class="process-step">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <h3>
+                        Select Scheme
+                    </h3>
+
+                    <p>
+                        Browse available government schemes and select
+                        a scheme that matches your requirements.
+                    </p>
+
+                </div>
+
+
+                <div class="process-step">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <h3>
+                        Check Eligibility
+                    </h3>
+
+                    <p>
+                        Your profile details are evaluated against the
+                        scheme eligibility criteria.
+                    </p>
+
+                </div>
+
+
+                <div class="process-step">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <h3>
+                        Submit Application
+                    </h3>
+
+                    <p>
+                        Submit the application along with the required
+                        supporting documents.
+                    </p>
+
+                </div>
+
+
+                <div class="process-step">
+
+                    <div class="step-number">
+                        4
+                    </div>
+
+                    <h3>
+                        Field Verification
+                    </h3>
+
+                    <p>
+                        A field officer verifies the submitted
+                        application and supporting information.
+                    </p>
+
+                </div>
+
+
+                <div class="process-step">
+
+                    <div class="step-number">
+                        5
+                    </div>
+
+                    <h3>
+                        District Review
+                    </h3>
+
+                    <p>
+                        The district officer reviews the verified
+                        application before it moves forward.
+                    </p>
+
+                </div>
+
+
+                <div class="process-step">
+
+                    <div class="step-number">
+                        6
+                    </div>
+
+                    <h3>
+                        Bank Verification
+                    </h3>
+
+                    <p>
+                        Submit your bank details. The finance officer
+                        verifies the account before disbursement.
+                    </p>
+
+                </div>
+
+
+                <div class="process-step">
+
+                    <div class="step-number">
+                        7
+                    </div>
+
+                    <h3>
+                        Approval
+                    </h3>
+
+                    <p>
+                        After successful verification, the application
+                        is approved and the installment schedule is created.
+                    </p>
+
+                </div>
+
+
+                <div class="process-step">
+
+                    <div class="step-number">
+                        8
+                    </div>
+
+                    <h3>
+                        Receive Installments
+                    </h3>
+
+                    <p>
+                        Subsidy funds are released in stages based on
+                        completion of compliance milestones.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         COMPLETE WORKFLOW
+    ================================================= -->
+
+    <section class="dashboard-section">
+
+        <div class="section-heading">
+
+            <p>
+                APPLICATION TRACKING
+            </p>
+
+            <h2>
+                Application Journey
+            </h2>
+
+            <div class="section-description">
+                Your application moves through these stages before
+                the subsidy is fully disbursed.
+            </div>
+
+        </div>
+
+
+        <div class="workflow-card">
+
+            <div class="workflow">
+
+
+                <div class="workflow-item">
+
+                    <div class="workflow-circle">
+                        1
+                    </div>
+
+                    <h4>
+                        Submitted
+                    </h4>
+
+                    <p>
+                        Application submitted
+                    </p>
+
+                </div>
+
+
+                <div class="workflow-line"></div>
+
+
+                <div class="workflow-item">
+
+                    <div class="workflow-circle">
+                        2
+                    </div>
+
+                    <h4>
+                        Field Verified
+                    </h4>
+
+                    <p>
+                        Field verification completed
+                    </p>
+
+                </div>
+
+
+                <div class="workflow-line"></div>
+
+
+                <div class="workflow-item">
+
+                    <div class="workflow-circle">
+                        3
+                    </div>
+
+                    <h4>
+                        District Approved
+                    </h4>
+
+                    <p>
+                        District review completed
+                    </p>
+
+                </div>
+
+
+                <div class="workflow-line"></div>
+
+
+                <div class="workflow-item">
+
+                    <div class="workflow-circle">
+                        4
+                    </div>
+
+                    <h4>
+                        Bank Verified
+                    </h4>
+
+                    <p>
+                        Bank details verified
+                    </p>
+
+                </div>
+
+
+                <div class="workflow-line"></div>
+
+
+                <div class="workflow-item">
+
+                    <div class="workflow-circle">
+                        5
+                    </div>
+
+                    <h4>
+                        Approved
+                    </h4>
+
+                    <p>
+                        Grant sanctioned
+                    </p>
+
+                </div>
+
+
+                <div class="workflow-line"></div>
+
+
+                <div class="workflow-item">
+
+                    <div class="workflow-circle">
+                        6
+                    </div>
+
+                    <h4>
+                        Disbursement
+                    </h4>
+
+                    <p>
+                        Installments released
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         INSTALLMENT PROCESS
+    ================================================= -->
+
+    <section class="dashboard-section">
+
+        <div class="section-heading">
+
+            <p>
+                STAGED DISBURSEMENT
+            </p>
+
+            <h2>
+                How Your Subsidy Is Released
+            </h2>
+
+            <div class="section-description">
+                Each installment is linked to a compliance milestone.
+            </div>
+
+        </div>
+
+
+        <div class="installment-grid">
+
+
+            <div class="installment-card">
+
+                <div class="installment-number">
+                    INSTALLMENT 01
+                </div>
+
+                <h3>
+                    Initial Disbursement
+                </h3>
+
+                <p>
+                    After application approval and bank verification,
+                    the first installment becomes available for payment.
+                </p>
+
+                <div class="percentage">
+                    40%
+                </div>
+
+            </div>
+
+
+            <div class="installment-card">
+
+                <div class="installment-number">
+                    INSTALLMENT 02
+                </div>
+
+                <h3>
+                    Utilization Verification
+                </h3>
+
+                <p>
+                    Submit the required utilization proof for the first
+                    installment. After verification, the next installment
+                    becomes available.
+                </p>
+
+                <div class="percentage">
+                    30%
+                </div>
+
+            </div>
+
+
+            <div class="installment-card">
+
+                <div class="installment-number">
+                    INSTALLMENT 03
+                </div>
+
+                <h3>
+                    Final Stage
+                </h3>
+
+                <p>
+                    Complete the next compliance milestone and submit
+                    the required proof for release of the final installment.
+                </p>
+
+                <div class="percentage">
+                    30%
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         BENEFICIARY RESPONSIBILITIES
+    ================================================= -->
+
+    <section class="dashboard-section">
+
+        <div class="section-heading">
+
+            <p>
+                BENEFICIARY GUIDELINES
+            </p>
+
+            <h2>
+                Your Responsibilities
+            </h2>
+
+        </div>
+
+
+        <div class="responsibility-grid">
+
+
+            <div class="responsibility-card">
+
+                <h3>
+                    📄 Application & Documents
+                </h3>
+
+                <ul>
+
+                    <li>
+                        Provide accurate information during application.
+                    </li>
+
+                    <li>
+                        Upload the required supporting documents.
+                    </li>
+
+                    <li>
+                        Ensure submitted documents are clear and valid.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="responsibility-card">
+
+                <h3>
+                    🏦 Bank Details
+                </h3>
+
+                <ul>
+
+                    <li>
+                        Provide correct account holder information.
+                    </li>
+
+                    <li>
+                        Enter the correct account number and IFSC code.
+                    </li>
+
+                    <li>
+                        Resubmit corrected details if rejected.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="responsibility-card">
+
+                <h3>
+                    📅 Compliance
+                </h3>
+
+                <ul>
+
+                    <li>
+                        Complete milestones within the specified due date.
+                    </li>
+
+                    <li>
+                        Submit utilization proof when required.
+                    </li>
+
+                    <li>
+                        Respond promptly to rejected proof requests.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="responsibility-card">
+
+                <h3>
+                    💰 Disbursement
+                </h3>
+
+                <ul>
+
+                    <li>
+                        Installments are released in stages.
+                    </li>
+
+                    <li>
+                        Subsequent installments depend on milestone completion.
+                    </li>
+
+                    <li>
+                        Monitor your application and payment status regularly.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-logo">
+        Digital<span>Subsidy</span>
+    </div>
+
+    <p>
+        Simple, transparent and accessible subsidy applications.
+    </p>
+
+    <div class="footer-line"></div>
+
+    <small>
+        © 2026 Digital Subsidy Platform.
+        All rights reserved.
+    </small>
+
+</footer>
+
+
+<script src="js/dashboard.js"></script>
+
+</body>
+
+</html>
